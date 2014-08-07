@@ -1,20 +1,40 @@
-use strict;
-use warnings;
 package Appium;
 
-# ABSTRACT: Perl bindings to the Appium mobile automation framework
-
-package Appium;
+# ABSTRACT: Perl bindings to the Appium mobile automation framework (WIP)
 use Moo;
 use Carp qw/croak/;
+use Appium::Commands;
 extends 'Selenium::Remote::Driver';
+
+
+=head1 SYNOPSIS
+
+my $appium = Appium->new(caps => {
+    app => '/url/or/path/to/mobile/app.zip'
+});
+
+$appium->hide_keyboard;
+$appium->quit;
+
+=head1 DESCRIPTION
+
+Appium is an open source test automation framework for use with native
+and hybrid mobile apps.  It drives iOS and Android apps using the
+WebDriver JSON wire protocol. This module is a thin extension of
+Selenium::Remote::Driver that adds Appium specific API endpoints and
+Appium-specific constructor defaults.
+
+It is woefully incomplete at the moment. Feel free to pitch in!
+
+=cut
 
 has '+desired_capabilities' => (
     is => 'rw',
     required => 1,
+    init_arg => 'caps',
     coerce => sub {
         my $caps = shift;
-        croak 'Desired Capabilities must include: app' unless exists $caps->{app};
+        croak 'Desired capabilities must include: app' unless exists $caps->{app};
 
         my $defaults = {
             browserName => '',
@@ -33,12 +53,12 @@ has '+desired_capabilities' => (
     }
 );
 
-has 'port' => (
+has '+port' => (
     is => 'rw',
     default => sub { 4723 }
 );
 
-has 'commands' => (
+has '+commands' => (
     is => 'ro',
     default => sub { Appium::Commands->new }
 );
@@ -79,5 +99,12 @@ sub hide_keyboard {
 
     return $self->_execute_command( $res, $params );
 }
+
+=head1 SEE ALSO
+
+http://appium.io
+Selenium::Remote::Driver
+
+=cut
 
 1;
