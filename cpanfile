@@ -1,3 +1,7 @@
+requires "Carp" => "0";
+requires "Moo" => "0";
+requires "Selenium::Remote::Commands" => "0";
+requires "Selenium::Remote::Driver" => "0";
 requires "strict" => "0";
 requires "warnings" => "0";
 
