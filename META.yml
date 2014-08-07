@@ -1,0 +1,29 @@
+---
+abstract: 'Perl bindings to the Appium mobile automation framework (WIP)'
+author:
+  - 'Daniel Gempesaw <gempesaw@gmail.com>'
+build_requires:
+  JSON: '0'
+  Test::LWP::UserAgent: '0'
+  Test::MockObject::Extends: '0'
+  Test::More: '0'
+  strict: '0'
+  warnings: '0'
+configure_requires:
+  ExtUtils::MakeMaker: '6.30'
+dynamic_config: 0
+generated_by: 'Dist::Zilla version 5.014, CPAN::Meta::Converter version 2.140640'
+license: perl
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: '1.4'
+name: Appium
+requires:
+  Carp: '0'
+  Moo: '0'
+  Selenium::Remote::Commands: '0'
+  Selenium::Remote::Driver: '0'
+resources:
+  bugtracker: https://github.com/gempesaw/Appium/issues
+  repository: git://github.com/gempesaw/Appium.git
+version: '0.01'
