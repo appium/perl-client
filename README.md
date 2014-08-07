@@ -1,10 +1,29 @@
 # NAME
 
-Appium - Perl bindings to the Appium mobile automation framework
+Appium - Perl bindings to the Appium mobile automation framework (WIP)
 
 # VERSION
 
 version 0.01
+
+# SYNOPSIS
+
+my $appium = Appium->new(caps => {
+    app => '/url/or/path/to/mobile/app.zip'
+});
+
+$appium->hide\_keyboard;
+$appium->quit;
+
+# DESCRIPTION
+
+Appium is an open source test automation framework for use with native
+and hybrid mobile apps.  It drives iOS and Android apps using the
+WebDriver JSON wire protocol. This module is a thin extension of
+Selenium::Remote::Driver that adds Appium specific API endpoints and
+Appium-specific constructor defaults.
+
+It is woefully incomplete at the moment. Feel free to pitch in!
 
 # METHODS
 
@@ -18,6 +37,11 @@ are used.
     $appium->hide_keyboard;
     $appium->hide_keyboard( key_name => 'Done');
     $appium->hide_keyboard( strategy => 'tapOutside');
+
+# SEE ALSO
+
+http://appium.io
+Selenium::Remote::Driver
 
 # AUTHOR
 
