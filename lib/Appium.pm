@@ -97,8 +97,13 @@ sub current_context {
     return $self->_execute_command( $res, $params );
 }
 
-# switching to context is handled by Appium::SwitchTo
+=method switch_to->context ( $context_name )
 
+Switch to the desired context for the current session
+
+    $appium->switch_to->context( 'WEBVIEW_1' );
+
+=cut
 
 has 'switch_to' => (
     is => 'lazy',

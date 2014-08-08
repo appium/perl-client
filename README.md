@@ -27,6 +27,24 @@ It is woefully incomplete at the moment. Feel free to pitch in!
 
 # METHODS
 
+## contexts ()
+
+Returns the contexts within the current session
+
+    $appium->contexts;
+
+## current\_context ()
+
+Return the current active context for the current session
+
+    $appium->current_context;
+
+## switch\_to->context ( $context\_name )
+
+Switch to the desired context for the current session
+
+    $appium->switch_to->context( 'WEBVIEW_1' );
+
 ## hide\_keyboard( key\_name|key|strategy => $key\_or\_strategy )
 
 Hides the software keyboard on the device. In iOS, you have the option
