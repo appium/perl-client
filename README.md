@@ -40,8 +40,19 @@ are used.
 
 # SEE ALSO
 
-http://appium.io
-Selenium::Remote::Driver
+Please see those modules/websites for more information related to this module.
+
+- [http://appium.io](http://appium.io)
+- [Selenium::Remote::Driver](https://metacpan.org/pod/Selenium::Remote::Driver)
+
+# BUGS
+
+Please report any bugs or feature requests on the bugtracker website
+https://github.com/gempesaw/Appium-Perl-Client/issues
+
+When submitting a bug or request, please include a test-file or a
+patch to an existing test-file that illustrates the bug or desired
+feature.
 
 # AUTHOR
 
