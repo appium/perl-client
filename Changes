@@ -1,0 +1,4 @@
+Revision history for perl module Appium
+
+0.01 2014-08-08
+ - Initial release: only additional Appium-specific sub is hide_keyboard
