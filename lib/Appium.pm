@@ -137,36 +137,32 @@ has 'switch_to' => (
 =method hide_keyboard( key_name|key|strategy => $key_or_strategy )
 
 Hides the software keyboard on the device. In iOS, you have the option
-of using `key_name` to close the keyboard by pressing a specific
-key. Or, you can use a particular strategy. In Android, no parameters
-are used.
+of using C<key_name> to close the keyboard by pressing a specific
+key. Or, you can specify a particular strategy; the default strategy
+is C<tapOutside>. In Android, no parameters are used.
 
     $appium->hide_keyboard;
     $appium->hide_keyboard( key_name => 'Done');
-    $appium->hide_keyboard( strategy => 'tapOutside');
+    $appium->hide_keyboard( strategy => 'tapOutside', key => 'Done');
 
 =cut
 
 sub hide_keyboard {
-    my ($self, @args) = @_;
+    my ($self, %args) = @_;
 
     my $res = { command => 'hide_keyboard' };
     my $params = {};
 
-    if (scalar @args == 2) {
-        foreach (qw/key_name key strategy/) {
-            if ($args[0] eq $_) {
-                my $key = $_;
-                $key = 'keyName' if $_ eq 'key_name';
+    if (exists $args{key_name}) {
+        $params->{keyName} = $args{key_name}
+    }
+    elsif (exists $args{key}) {
+        $params->{key} = $args{key}
+    }
 
-                $params->{$key} = $args[1];
-                last;
-            }
-        }
-    }
-    else {
-        $params->{strategy} = 'tapOutside';
-    }
+    # default strategy is tapOutside
+    my $strategy = 'tapOutside';
+    $params->{strategy} = $args{strategy} || $strategy;
 
     return $self->_execute_command( $res, $params );
 }

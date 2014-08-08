@@ -68,13 +68,13 @@ Switch to the desired context for the current session
 ## hide\_keyboard( key\_name|key|strategy => $key\_or\_strategy )
 
 Hides the software keyboard on the device. In iOS, you have the option
-of using \`key\_name\` to close the keyboard by pressing a specific
-key. Or, you can use a particular strategy. In Android, no parameters
-are used.
+of using `key_name` to close the keyboard by pressing a specific
+key. Or, you can specify a particular strategy; the default strategy
+is `tapOutside`. In Android, no parameters are used.
 
     $appium->hide_keyboard;
     $appium->hide_keyboard( key_name => 'Done');
-    $appium->hide_keyboard( strategy => 'tapOutside');
+    $appium->hide_keyboard( strategy => 'tapOutside', key => 'Done');
 
 # SEE ALSO
 

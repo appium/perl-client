@@ -52,7 +52,7 @@ HIDE_KEYBOARD: {
             }
         },
         {
-            args => [ strategy => 'fake strategy' ],
+            args => [ strategy => 'fake strategy', key => 'Done' ],
             expected => {
                 test => 'can pass a strategy',
                 key => 'strategy',
@@ -68,6 +68,12 @@ HIDE_KEYBOARD: {
         my $key = $expected->{key};
         ok( exists $params->{$key}, 'hide_keyboard, key: ' . $expected->{test});
         cmp_ok( $params->{$key}, 'eq', $expected->{value}, 'hide_keyboard, val: ' . $expected->{test});
+
+        if ($expected->{test} eq 'can pass a strategy') {
+            ok( exists $params->{key}, 'hide_keyboard, key: strategy and key are included');
+            cmp_ok( $params->{key}, 'eq', 'Done', 'hide_keyboard, val: strategy and key are included');
+
+        }
     }
 }
 
