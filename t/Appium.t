@@ -8,7 +8,6 @@ use Cwd qw/abs_path/;
 
 BEGIN: {
     my $test_lib = abs_path(__FILE__);
-    use Data::Dumper; use DDP;
     $test_lib =~ s/(.*)\/.*\.t$/$1\/lib/;
     push @INC, $test_lib;
     require MockAppium;

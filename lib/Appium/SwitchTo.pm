@@ -1,4 +1,6 @@
 package Appium::SwitchTo;
+
+# ABSTRACT: Provide access to Appium's context switching functionality
 use Moo;
 
 has 'driver' => (
