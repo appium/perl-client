@@ -9,12 +9,12 @@ extends 'Selenium::Remote::Driver';
 
 =head1 SYNOPSIS
 
-my $appium = Appium->new(caps => {
-    app => '/url/or/path/to/mobile/app.zip'
-});
+    my $appium = Appium->new(caps => {
+        app => '/url/or/path/to/mobile/app.zip'
+    });
 
-$appium->hide_keyboard;
-$appium->quit;
+    $appium->hide_keyboard;
+    $appium->quit;
 
 =head1 DESCRIPTION
 

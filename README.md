@@ -4,16 +4,16 @@ Appium - Perl bindings to the Appium mobile automation framework (WIP)
 
 # VERSION
 
-version 0.01
+version 0.02
 
 # SYNOPSIS
 
-my $appium = Appium->new(caps => {
-    app => '/url/or/path/to/mobile/app.zip'
-});
+    my $appium = Appium->new(caps => {
+        app => '/url/or/path/to/mobile/app.zip'
+    });
 
-$appium->hide\_keyboard;
-$appium->quit;
+    $appium->hide_keyboard;
+    $appium->quit;
 
 # DESCRIPTION
 
