@@ -26,7 +26,29 @@ WebDriver JSON wire protocol. This module is a thin extension of
 Selenium::Remote::Driver that adds Appium specific API endpoints and
 Appium-specific constructor defaults.
 
-It is woefully incomplete at the moment. Feel free to pitch in!
+For details on how Appium extends the Webdriver spec, see the Selenium
+project's L<spec-draft
+document|https://code.google.com/p/selenium/source/browse/spec-draft.md?repo=mobile>
+
+This module is woefully incomplete at the moment. Feel free to pitch in!
+
+=cut
+
+=head1 NEW OR UPDATED FUNCTIONALITY
+
+=head3 Contexts
+
+Instead of using windows to manage switching between native
+applications and webviews, use the analogous context methods:
+
+    my $current = $appium->current_context;
+    my @contexts = $appium->contexts;
+
+    my $context = 'WEBVIEW_1'
+    $appium->switch_to->context( $context );
+
+Note that this module uses the `->switch_to->context` syntax, unlike
+its parent module.
 
 =cut
 
