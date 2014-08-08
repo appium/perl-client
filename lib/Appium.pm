@@ -3,6 +3,8 @@ package Appium;
 # ABSTRACT: Perl bindings to the Appium mobile automation framework (WIP)
 use Moo;
 use Carp qw/croak/;
+
+use Appium::SwitchTo;
 use Appium::Commands;
 extends 'Selenium::Remote::Driver';
 
@@ -62,6 +64,48 @@ has '+commands' => (
     is => 'ro',
     default => sub { Appium::Commands->new }
 );
+
+=method contexts ()
+
+Returns the contexts within the current session
+
+    $appium->contexts;
+
+=cut
+
+sub contexts {
+    my ($self) = @_;
+
+    my $res = { command => 'contexts' };
+    return $self->_execute_command( $res );
+}
+
+=method current_context ()
+
+Return the current active context for the current session
+
+    $appium->current_context;
+
+=cut
+
+sub current_context {
+    my ($self) = @_;
+
+    my $res = { command => 'get_current_context' };
+    my $params = {};
+
+    return $self->_execute_command( $res, $params );
+}
+
+# switching to context is handled by Appium::SwitchTo
+
+
+has 'switch_to' => (
+    is => 'lazy',
+    init_arg => undef,
+    default => sub { Appium::SwitchTo->new( driver => shift );  }
+);
+
 
 =method hide_keyboard( key_name|key|strategy => $key_or_strategy )
 

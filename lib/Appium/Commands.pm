@@ -19,11 +19,26 @@ has 'get_cmds' => (
         my $commands = $self->SUPER::get_cmds;
 
         my $appium_commands = {
+            contexts => {
+                method => 'GET',
+                url => '/session/$sessionId/contexts',
+                no_content_success => 0
+            },
+            get_current_context => {
+                method => 'GET',
+                url => '/session/$sessionId/context',
+                no_content_success => 0
+            },
+            switch_to_context => {
                 method => 'POST',
-                url => 'session/:sessionId/appium/device/hide_keyboard',
+                url => '/session/$sessionId/context',
                 no_content_success => 1
-            }
+            },
             hide_keyboard => {
+                method => 'POST',
+                url => '/session/$sessionId/appium/device/hide_keyboard',
+                no_content_success => 1
+            },
         };
 
         foreach (keys %$appium_commands) {
