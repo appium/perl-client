@@ -23,7 +23,7 @@ extends 'Selenium::Remote::Driver';
 Appium is an open source test automation framework for use with native
 and hybrid mobile apps.  It drives iOS and Android apps using the
 WebDriver JSON wire protocol. This module is a thin extension of
-Selenium::Remote::Driver that adds Appium specific API endpoints and
+L<Selenium::Remote::Driver> that adds Appium specific API endpoints and
 Appium-specific constructor defaults.
 
 For details on how Appium extends the Webdriver spec, see the Selenium
@@ -47,7 +47,7 @@ applications and webviews, use the analogous context methods:
     my $context = 'WEBVIEW_1'
     $appium->switch_to->context( $context );
 
-Note that this module uses the `->switch_to->context` syntax, unlike
+Note that this module uses the C<< ->switch_to->context >> syntax, unlike
 its parent module.
 
 =cut
