@@ -4,34 +4,28 @@ use strict;
 use warnings;
 use JSON;
 use Test::More;
-use Test::LWP::UserAgent;
-use Test::MockObject::Extends;
+use Cwd qw/abs_path/;
 
 BEGIN: {
+    my $test_lib = abs_path(__FILE__);
+    use Data::Dumper; use DDP;
+    $test_lib =~ s/(.*)\/.*\.t$/$1\/lib/;
+    push @INC, $test_lib;
+    require MockAppium;
+
     unless (use_ok('Appium')) {
         BAIL_OUT("Couldn't load Appium");
         exit;
     }
 }
 
-my $tua = Test::LWP::UserAgent->new;
-my $fake_session_response = {
-    cmd_return => {},
-    cmd_status => 'OK',
-    sessionId => '123124123'
-};
+my $mock_appium = MockAppium->new;
 
-$tua->map_response(qr{status}, HTTP::Response->new(200, 'OK'));
-$tua->map_response(qr{session}, HTTP::Response->new(204, 'OK', ['Content-Type' => 'application/json'], to_json($fake_session_response)));
-
-my $appium = Appium->new(
-    caps => { app => 'fake' },
-    ua => $tua
-);
-
-my $mock_appium = Test::MockObject::Extends->new($appium);
-
-$mock_appium->mock('_execute_command', sub { shift; @_;});
+CONTEXT: {
+    my $context = 'WEBVIEW_1';
+    my (undef, $params) = $mock_appium->switch_to->context( $context );
+    cmp_ok($params->{name}, 'eq', $context, 'can switch to a context');
+}
 
 HIDE_KEYBOARD: {
     my $tests = [
