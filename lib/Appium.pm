@@ -79,7 +79,7 @@ are used.
 sub hide_keyboard {
     my ($self, @args) = @_;
 
-    my $res = { command => 'hideKeyboard' };
+    my $res = { command => 'hide_keyboard' };
     my $params = {};
 
     if (scalar @args == 2) {
