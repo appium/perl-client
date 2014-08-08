@@ -36,6 +36,7 @@
       },
       "test" : {
          "requires" : {
+            "Cwd" : "0",
             "JSON" : "0",
             "Test::LWP::UserAgent" : "0",
             "Test::MockObject::Extends" : "0",
@@ -48,14 +49,14 @@
    "release_status" : "stable",
    "resources" : {
       "bugtracker" : {
-         "web" : "https://github.com/gempesaw/Appium/issues"
+         "web" : "https://github.com/gempesaw/Appium-Perl-Client/issues"
       },
       "repository" : {
          "type" : "git",
-         "url" : "git://github.com/gempesaw/Appium.git",
-         "web" : "https://github.com/gempesaw/Appium"
+         "url" : "git://github.com/gempesaw/Appium-Perl-Client.git",
+         "web" : "https://github.com/gempesaw/Appium-Perl-Client"
       }
    },
-   "version" : "0.01"
+   "version" : "0.02"
 }
 

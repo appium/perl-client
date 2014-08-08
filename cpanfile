@@ -4,6 +4,7 @@ requires "Selenium::Remote::Commands" => "0";
 requires "Selenium::Remote::Driver" => "0";
 
 on 'test' => sub {
+  requires "Cwd" => "0";
   requires "JSON" => "0";
   requires "Test::LWP::UserAgent" => "0";
   requires "Test::MockObject::Extends" => "0";

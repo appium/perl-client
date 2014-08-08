@@ -3,6 +3,7 @@ abstract: 'Perl bindings to the Appium mobile automation framework (WIP)'
 author:
   - 'Daniel Gempesaw <gempesaw@gmail.com>'
 build_requires:
+  Cwd: '0'
   JSON: '0'
   Test::LWP::UserAgent: '0'
   Test::MockObject::Extends: '0'
@@ -24,6 +25,6 @@ requires:
   Selenium::Remote::Commands: '0'
   Selenium::Remote::Driver: '0'
 resources:
-  bugtracker: https://github.com/gempesaw/Appium/issues
-  repository: git://github.com/gempesaw/Appium.git
-version: '0.01'
+  bugtracker: https://github.com/gempesaw/Appium-Perl-Client/issues
+  repository: git://github.com/gempesaw/Appium-Perl-Client.git
+version: '0.02'

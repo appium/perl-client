@@ -4,34 +4,27 @@ use strict;
 use warnings;
 use JSON;
 use Test::More;
-use Test::LWP::UserAgent;
-use Test::MockObject::Extends;
+use Cwd qw/abs_path/;
 
 BEGIN: {
+    my $test_lib = abs_path(__FILE__);
+    $test_lib =~ s/(.*)\/.*\.t$/$1\/lib/;
+    push @INC, $test_lib;
+    require MockAppium;
+
     unless (use_ok('Appium')) {
         BAIL_OUT("Couldn't load Appium");
         exit;
     }
 }
 
-my $tua = Test::LWP::UserAgent->new;
-my $fake_session_response = {
-    cmd_return => {},
-    cmd_status => 'OK',
-    sessionId => '123124123'
-};
+my $mock_appium = MockAppium->new;
 
-$tua->map_response(qr{status}, HTTP::Response->new(200, 'OK'));
-$tua->map_response(qr{session}, HTTP::Response->new(204, 'OK', ['Content-Type' => 'application/json'], to_json($fake_session_response)));
-
-my $appium = Appium->new(
-    caps => { app => 'fake' },
-    ua => $tua
-);
-
-my $mock_appium = Test::MockObject::Extends->new($appium);
-
-$mock_appium->mock('_execute_command', sub { shift; @_;});
+CONTEXT: {
+    my $context = 'WEBVIEW_1';
+    my (undef, $params) = $mock_appium->switch_to->context( $context );
+    cmp_ok($params->{name}, 'eq', $context, 'can switch to a context');
+}
 
 HIDE_KEYBOARD: {
     my $tests = [
@@ -52,7 +45,7 @@ HIDE_KEYBOARD: {
             }
         },
         {
-            args => [ strategy => 'fake strategy' ],
+            args => [ strategy => 'fake strategy', key => 'Done' ],
             expected => {
                 test => 'can pass a strategy',
                 key => 'strategy',
@@ -68,6 +61,12 @@ HIDE_KEYBOARD: {
         my $key = $expected->{key};
         ok( exists $params->{$key}, 'hide_keyboard, key: ' . $expected->{test});
         cmp_ok( $params->{$key}, 'eq', $expected->{value}, 'hide_keyboard, val: ' . $expected->{test});
+
+        if ($expected->{test} eq 'can pass a strategy') {
+            ok( exists $params->{key}, 'hide_keyboard, key: strategy and key are included');
+            cmp_ok( $params->{key}, 'eq', 'Done', 'hide_keyboard, val: strategy and key are included');
+
+        }
     }
 }
 

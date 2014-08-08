@@ -27,6 +27,7 @@ my %WriteMakefileArgs = (
     "Selenium::Remote::Driver" => 0
   },
   "TEST_REQUIRES" => {
+    "Cwd" => 0,
     "JSON" => 0,
     "Test::LWP::UserAgent" => 0,
     "Test::MockObject::Extends" => 0,
@@ -34,7 +35,7 @@ my %WriteMakefileArgs = (
     "strict" => 0,
     "warnings" => 0
   },
-  "VERSION" => "0.01",
+  "VERSION" => "0.02",
   "test" => {
     "TESTS" => "t/*.t"
   }
@@ -43,6 +44,7 @@ my %WriteMakefileArgs = (
 
 my %FallbackPrereqs = (
   "Carp" => 0,
+  "Cwd" => 0,
   "JSON" => 0,
   "Moo" => 0,
   "Selenium::Remote::Commands" => 0,
