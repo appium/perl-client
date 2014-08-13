@@ -96,6 +96,10 @@ feature.
 
 Daniel Gempesaw <gempesaw@gmail.com>
 
+# CONTRIBUTOR
+
+Freddy Vega <freddy@vgp-miami.com>
+
 # COPYRIGHT AND LICENSE
 
 This software is copyright (c) 2014 by Daniel Gempesaw.
