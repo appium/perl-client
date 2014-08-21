@@ -84,7 +84,7 @@ has '_type' => (
         my $device = shift;
 
         croak 'platformName must be Android or iOS'
-          unless grep { $_ eq $device} } qw/Android iOS/;
+          unless grep { $_ eq $device } qw/Android iOS/;
 
         return $device;
     },

@@ -25,14 +25,13 @@ my $elem = Appium::Element->new(
 
 SET_TEXT: {
   ANDROID: {
-        $mock_appium->mock( 'is_android', sub { 1 } );
+        $mock_appium->_type('Android');
         my ($res, $params) = $elem->set_text( qw/a b c d e f g/ );
         ok(join('', @{ $params->{value} }) eq 'abcdefg', 'can set android text');
     }
 
   IOS: {
-        $mock_appium->mock( 'is_android', sub { 0 } );
-        $mock_appium->mock( 'is_ios', sub { 1 } );
+        $mock_appium->_type('iOS');
         my @res = $elem->set_text( qw/a b c d e f g/ );
 
         # This gets a little ugly because the ios version of set text

@@ -47,12 +47,13 @@ SWITCH_TO_COMMANDS: {
 }
 
 ELEMENT_COMMANDS: {
-    my @element_implemented = qw/ set_text /;
+    $mock_appium->_type('Android');
     my $elem = Appium::Element->new(
         id => 0,
         driver => $mock_appium
     );
 
+    my @element_implemented = qw/ set_text /;
     foreach my $command (@element_implemented) {
         my ($res, undef) = $elem->$command( '' );
         ok(delete $cmds->{ $res->{command} }, 'elem: ' . $command . ' is in found in the Commands hash');
