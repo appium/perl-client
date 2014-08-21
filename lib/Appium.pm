@@ -73,9 +73,20 @@ has '+desired_capabilities' => (
             }
         }
 
+        croak 'platformName must be Android or iOS'
+          unless grep { $_ eq $caps->{platformName} } qw/Android iOS/;
+        $self->_type($caps->{platformName});
+
         return $caps;
     }
 );
+
+has '_type' => (
+    is => 'rw',
+    lazy => 1,
+    default => sub { 'iOS' }
+);
+
 
 has '+port' => (
     is => 'rw',
@@ -170,6 +181,14 @@ sub hide_keyboard {
     $params->{strategy} = $args{strategy} || $strategy;
 
     return $self->_execute_command( $res, $params );
+}
+
+sub is_android {
+    return shift->_type eq 'Android'
+}
+
+sub is_ios {
+    return shift->_type eq 'iOS'
 }
 
 =head1 SEE ALSO

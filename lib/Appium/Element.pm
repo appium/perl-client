@@ -12,6 +12,17 @@ sub set_text {
     my ($self, @keys) = @_;
     croak "set_text requires text to set" unless scalar @keys >= 1;
 
+    if ($self->is_android) {
+        $self->set_text_android(@keys);
+    }
+    elsif ($self->is_ios) {
+        return $self->set_text_ios(@keys);
+    }
+}
+
+sub set_text_android {
+    my ($self, @keys) = @_;
+
     my $res = {
         id => $self->id,
         command => 'set_text'

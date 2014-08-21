@@ -17,21 +17,41 @@ BEGIN: {
     }
 }
 
-my $mock = MockAppium->new;
+my $mock_appium = MockAppium->new;
 my $elem = Appium::Element->new(
     id => 0,
-    driver => $mock
+    driver => $mock_appium
 );
 
 SET_TEXT: {
-    my ($res, $params) = $elem->set_text( qw/a b c d e f g/ );
-    ok(join('', @{ $params->{value} }) eq 'abcdefg', 'can set text');
-}
+  ANDROID: {
+        $mock_appium->mock( 'is_android', sub { 1 } );
+        my ($res, $params) = $elem->set_text( qw/a b c d e f g/ );
+        ok(join('', @{ $params->{value} }) eq 'abcdefg', 'can set android text');
+    }
 
-SET_TEXT_IOS: {
-    my (@res) = $elem->set_text_ios( qw/a b c d e f g/ );
-    my $script = $res[0]->[1]->{script};
-    ok($script eq 'au.getElement("0").setValue("abcdefg");', 'can set ios text!');
+  IOS: {
+        $mock_appium->mock( 'is_android', sub { 0 } );
+        $mock_appium->mock( 'is_ios', sub { 1 } );
+        my @res = $elem->set_text( qw/a b c d e f g/ );
+
+        # This gets a little ugly because the ios version of set text
+        # ends in S::R::D's invoking _execute_command by itself, and
+        # in their code, they ask for a scalar instead of a list - ie,
+        #
+        # my $ret =  $d->_execute_command,
+        #
+        # instead of the way we've been doing it in the Appium
+        # library:
+        #
+        # my ($res, $params) = $d->_execute_command.
+        #
+        # So, there's an extra level of dereferencing that we have to
+        # do, and we also have to use wantarray in the MockAppium
+        # library.
+        my $script = $res[0]->[1]->{script};
+        ok($script eq 'au.getElement("0").setValue("abcdefg");', 'can set ios text!');
+    }
 }
 
 
