@@ -13,7 +13,7 @@ BEGIN: {
     require MockAppium;
 
     unless (use_ok('Appium::Commands')) {
-        BAIL_OUT("Couldn't load Appium");
+        BAIL_OUT("Couldn't load Appium::Commands");
         exit;
     }
 }
