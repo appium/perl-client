@@ -23,8 +23,16 @@ my $elem = Appium::Element->new(
     driver => $mock
 );
 
-my ($res, $params) = $elem->set_text( qw/a b c d e f g/ );
-ok(join('', @{ $params->{value} }) eq 'abcdefg', 'can set text');
+SET_TEXT: {
+    my ($res, $params) = $elem->set_text( qw/a b c d e f g/ );
+    ok(join('', @{ $params->{value} }) eq 'abcdefg', 'can set text');
+}
+
+SET_TEXT_IOS: {
+    my (@res) = $elem->set_text_ios( qw/a b c d e f g/ );
+    my $script = $res[0]->[1]->{script};
+    ok($script eq 'au.getElement("0").setValue("abcdefg");', 'can set ios text!');
+}
 
 
 done_testing;

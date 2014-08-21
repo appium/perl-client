@@ -25,7 +25,7 @@ sub new {
 
     my $mock_appium = Test::MockObject::Extends->new($appium);
 
-    $mock_appium->mock('_execute_command', sub { shift; @_;});
+    $mock_appium->mock('_execute_command', sub { shift; wantarray ? @_ : \@_;});
 
     return $mock_appium;
 

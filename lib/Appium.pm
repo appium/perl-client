@@ -87,6 +87,11 @@ has '+commands' => (
     default => sub { Appium::Commands->new }
 );
 
+has 'webelement_class' => (
+    is => 'rw',
+    default => sub { 'Appium::Element' }
+);
+
 =method contexts ()
 
 Returns the contexts within the current session
