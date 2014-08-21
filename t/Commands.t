@@ -32,8 +32,10 @@ my $cmds = Appium::Commands->new->get_cmds;
 
 DRIVER_COMMANDS: {
     foreach my $command (@implemented) {
+        ok($mock_appium->can($command), 'Appium can ' . $command);
+
         my ($res, undef) = $mock_appium->$command;
-        ok(delete $cmds->{ $res->{command} }, $command . ' is in found in the Commands hash');
+        delete $cmds->{ $res->{command} };
     }
 }
 
@@ -41,8 +43,10 @@ SWITCH_TO_COMMANDS: {
     my @switch_to_implemented = qw/ context /;
 
     foreach my $command (@switch_to_implemented) {
-        my ($res, undef) = $mock_appium->switch_to->$command;
-        ok(delete $cmds->{ $res->{command} }, 'switch: ' . $command . ' is in found in the Commands hash');
+        ok($mock_appium->switch_to->can($command), 'SwitchTo can ' . $command);
+
+        my ($res) = $mock_appium->switch_to->$command;
+        delete $cmds->{ $res->{command} };
     }
 }
 
@@ -55,8 +59,10 @@ ELEMENT_COMMANDS: {
 
     my @element_implemented = qw/ set_text /;
     foreach my $command (@element_implemented) {
-        my ($res, undef) = $elem->$command( '' );
-        ok(delete $cmds->{ $res->{command} }, 'elem: ' . $command . ' is in found in the Commands hash');
+        ok($elem->can($command), 'Elem can ' . $command);
+
+        my ($res) = $elem->$command('');
+        delete $cmds->{ $res->{command} };
     }
 
 }
