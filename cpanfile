@@ -2,6 +2,7 @@ requires "Carp" => "0";
 requires "Moo" => "0";
 requires "Selenium::Remote::Commands" => "0";
 requires "Selenium::Remote::Driver" => "0";
+requires "Selenium::Remote::WebElement" => "0";
 
 on 'test' => sub {
   requires "Cwd" => "0";

@@ -184,6 +184,11 @@ has 'get_cmds' => (
             #         url => 'session/:sessionId/ime/active_engine',
             #         no_content_success => 0
             #     }
+            set_text => {
+                method => 'POST',
+                url => 'session/:sessionId/appium/element/:element/replace_value',
+                no_content_success => 1
+            }
         };
 
         foreach (keys %$appium_commands) {
