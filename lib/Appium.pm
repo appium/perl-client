@@ -73,10 +73,6 @@ has '+desired_capabilities' => (
             }
         }
 
-        croak 'platformName must be Android or iOS'
-          unless grep { $_ eq $caps->{platformName} } qw/Android iOS/;
-        $self->_type($caps->{platformName});
-
         return $caps;
     }
 );
@@ -84,6 +80,14 @@ has '+desired_capabilities' => (
 has '_type' => (
     is => 'rw',
     lazy => 1,
+    coerce => sub {
+        my $device = shift;
+
+        croak 'platformName must be Android or iOS'
+          unless grep { $_ eq $device} } qw/Android iOS/;
+
+        return $device;
+    },
     default => sub { 'iOS' }
 );
 
@@ -102,6 +106,12 @@ has 'webelement_class' => (
     is => 'rw',
     default => sub { 'Appium::Element' }
 );
+
+sub BUILD {
+    my ($self) = @_;
+
+    $self->_type($self->desired_capabilities->{platformName});
+}
 
 =method contexts ()
 
