@@ -67,10 +67,11 @@ ELEMENT_COMMANDS: {
 
 }
 
-# There are 68 commands that we inherit from S::R::Commands. We add
+# There are 70 commands that we inherit from S::R::Commands. We add
 # our own, and then delete them one by one in each foreach loop
-# above. By the time we get here, there should only be the original 68
+# above. By the time we get here, there should only be the original 70
 # left.
-ok( scalar keys %{ $cmds } == 68, 'All Appium Commands are implemented!');
+my $SRD_COMMANDS = 70;
+cmp_ok( scalar keys %{ $cmds }, '==', $SRD_COMMANDS, 'All Appium Commands are implemented!');
 
 done_testing;
