@@ -8,6 +8,15 @@ has '+driver' => (
     handles => [ qw/is_android is_ios/ ]
 );
 
+=method set_text ( $text )
+
+Set the value of an element, replacing any already existing text. Use
+this method for overwriting Android hint text in textfields.
+
+    $elem->set_text( 'clear existing text' );
+
+=cut
+
 sub set_text {
     my ($self, @keys) = @_;
     croak "set_text requires text to set" unless scalar @keys >= 1;
