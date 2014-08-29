@@ -26,6 +26,7 @@ my @implemented = qw/
                         contexts
                         current_context
                         hide_keyboard
+                        reset
                     /;
 
 my $cmds = Appium::Commands->new->get_cmds;

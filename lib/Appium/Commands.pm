@@ -134,11 +134,11 @@ has 'get_cmds' => (
             #         url => 'session/:sessionId/appium/device/shake',
             #         no_content_success => 1
             #     },
-            #     reset => {
-            #         method => 'POST',
-            #         url => 'session/:sessionId/appium/app/reset',
-            #         no_content_success => 1
-            #     },
+            reset => {
+                method => 'POST',
+                url => 'session/:sessionId/appium/app/reset',
+                no_content_success => 1
+            },
             hide_keyboard => {
                 method => 'POST',
                 url => 'session/:sessionId/appium/device/hide_keyboard',

@@ -209,6 +209,23 @@ sub hide_keyboard {
     return $self->_execute_command( $res, $params );
 }
 
+=method reset ()
+
+Reset the current application
+
+    $appium->reset;
+
+=cut
+
+sub reset {
+    my ($self) = @_;
+
+    my $res = { command => 'reset' };
+
+    return $self->_execute_command( $res );
+}
+
+
 sub is_android {
     return shift->_type eq 'Android'
 }
