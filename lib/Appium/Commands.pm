@@ -64,11 +64,11 @@ has 'get_cmds' => (
                 url => 'session/:sessionId/appium/device/current_activity',
                 no_content_success => 0
             },
-            #     set_immediate_value => {
-            #         method => 'POST',
-            #         url => 'session/:sessionId/appium/element/$elementId/value',
-            #         no_content_success => 1
-            #     },
+            set_value => {
+                method => 'POST',
+                url => 'session/:sessionId/appium/element/$elementId/value',
+                no_content_success => 1
+            },
             #     pull_file => {
             #         method => 'POST',
             #         url => 'session/:sessionId/appium/device/pull_file',

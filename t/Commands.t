@@ -62,14 +62,16 @@ ELEMENT_COMMANDS: {
         driver => $mock_appium
     );
 
-    my @element_implemented = qw/ set_text /;
+    my @element_implemented = qw/
+                                    set_text
+                                    set_value
+                                /;
     foreach my $command (@element_implemented) {
-        ok($elem->can($command), 'Elem can ' . $command);
+        ok($elem->can($command), 'Appium::Element can ' . $command);
 
         my ($res) = $elem->$command('');
         delete $cmds->{ $res->{command} };
     }
-
 }
 
 # There are 70 commands that we inherit from S::R::Commands. We add
