@@ -29,6 +29,7 @@ my @implemented = qw/
                         current_context
                         hide_keyboard
                         press_keycode
+                        pull_file
                         long_press_keycode
                         reset
                     /;

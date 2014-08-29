@@ -69,21 +69,21 @@ has 'get_cmds' => (
                 url => 'session/:sessionId/appium/element/$elementId/value',
                 no_content_success => 1
             },
-            #     pull_file => {
-            #         method => 'POST',
-            #         url => 'session/:sessionId/appium/device/pull_file',
-            #         no_content_success => 1
-            #     },
             #     pull_folder => {
             #         method => 'POST',
             #         url => 'session/:sessionId/appium/device/pull_folder',
             #         no_content_success => 1
             #     },
-            #     push_file => {
-            #         method => 'POST',
-            #         url => 'session/:sessionId/appium/device/push_file',
-            #         no_content_success => 1
-            #     },
+            pull_file => {
+                method => 'POST',
+                url => 'session/:sessionId/appium/device/pull_file',
+                no_content_success => 0
+            },
+            # push_file => {
+            #     method => 'POST',
+            #     url => 'session/:sessionId/appium/device/push_file',
+            #     no_content_success => 1
+            # },
             #     complex_find => {
             #         method => 'POST',
             #         url => 'session/:sessionId/appium/app/complex_find',

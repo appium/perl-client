@@ -318,6 +318,25 @@ sub current_activity {
     return $self->_execute_command( $res );
 }
 
+=method pull_file ( $file )
+
+Pull a file from the device, returning it Base64 encoded.
+
+    $appium->pull_file( $file );
+
+=cut
+
+sub pull_file {
+    my ($self, $path) = @_;
+    croak "Please specify a path to pull from the device"
+      unless defined $path;
+
+    my $res = { command => 'pull_file' };
+    my $params = { path => $path };
+
+    return $self->_execute_command( $res, $params );
+}
+
 sub is_android {
     return shift->_type eq 'Android'
 }
