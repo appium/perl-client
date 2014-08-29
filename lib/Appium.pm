@@ -63,10 +63,37 @@ applications and webviews, use the analogous context methods:
     my $context = 'WEBVIEW_1'
     $appium->switch_to->context( $context );
 
-Note that this module uses the C<< ->switch_to->context >> syntax, unlike
-its parent module.
+=head3 Finding Elements
+
+There are additional strategies available for finding elements in
+Appium:
+
+    $driver->find_element( 'ios' , 'ios' );         # iOS UIAutomation
+    $driver->find_element( 'android' , 'android' ); # Android UIAutomator
+    $driver->find_element( 'identifier' , 'accessibility_id' );
+
+Note that using C<id> as your finding strategy also seems to find
+elements by accessibility_id.
 
 =cut
+
+use constant FINDERS => {
+    class               => 'class name',
+    class_name          => 'class name',
+    css                 => 'css selector',
+    id                  => 'id',
+    link                => 'link text',
+    link_text           => 'link text',
+    name                => 'name',
+    partial_link_text   => 'partial link text',
+    tag_name            => 'tag name',
+    xpath               => 'xpath',
+    ios                 => '-ios uiautomation',
+    ios_uiautomation    => '-ios uiautomation',
+    android             => '-android uiautomator',
+    android_uiautomator => '-android uiautomator',
+    accessibility_id    => 'accessibility id'
+};
 
 has '+desired_capabilities' => (
     is => 'rw',
