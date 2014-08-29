@@ -9,6 +9,7 @@ requires "Selenium::Remote::WebElement" => "0";
 on 'test' => sub {
   requires "Cwd" => "0";
   requires "JSON" => "0";
+  requires "Test::Deep" => "0";
   requires "Test::LWP::UserAgent" => "0";
   requires "Test::MockObject::Extends" => "0";
   requires "Test::More" => "0";

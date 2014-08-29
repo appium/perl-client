@@ -96,7 +96,6 @@ has '_type' => (
     default => sub { 'iOS' }
 );
 
-
 has '+port' => (
     is => 'rw',
     default => sub { 4723 }
