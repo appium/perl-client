@@ -49,16 +49,16 @@ has 'get_cmds' => (
                 url => 'session/:sessionId/appium/app/strings',
                 no_content_success => 1
             },
-            #     press_keycode => {
-            #         method => 'POST',
-            #         url => 'session/:sessionId/appium/device/press_keycode',
-            #         no_content_success => 1
-            #     },
-            #     long_press_keycode => {
-            #         method => 'POST',
-            #         url => 'session/:sessionId/appium/device/long_press_keycode',
-            #         no_content_success => 1
-            #     },
+            press_keycode => {
+                method => 'POST',
+                url => 'session/:sessionId/appium/device/press_keycode',
+                no_content_success => 1
+            },
+            long_press_keycode => {
+                method => 'POST',
+                url => 'session/:sessionId/appium/device/long_press_keycode',
+                no_content_success => 1
+            },
             #     get_current_activity => {
             #         method => 'GET',
             #         url => 'session/:sessionId/appium/device/current_activity',

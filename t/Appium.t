@@ -70,4 +70,14 @@ HIDE_KEYBOARD: {
     }
 }
 
+ANDROID_KEYCODES: {
+    my (undef, $params) = $mock_appium->press_keycode( 176 );
+    cmp_ok($params->{keycode}, 'eq', 176, 'keycodes are passed through');
+    ok(!defined $params->{metastate}, 'metastate is optional');
+
+    (undef, $params) = $mock_appium->long_press_keycode( 176 );
+    cmp_ok($params->{keycode}, 'eq', 176, 'keycodes are passed through');
+    ok(!defined $params->{metastate}, 'metastate is optional');
+}
+
 done_testing;

@@ -27,6 +27,8 @@ my @implemented = qw/
                         contexts
                         current_context
                         hide_keyboard
+                        press_keycode
+                        long_press_keycode
                         reset
                     /;
 

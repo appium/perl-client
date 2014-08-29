@@ -176,7 +176,7 @@ has 'switch_to' => (
     default => sub { Appium::SwitchTo->new( driver => shift );  }
 );
 
-=method hide_keyboard( key_name|key|strategy => $key_or_strategy )
+=method hide_keyboard( [key_name|key|strategy => $key_or_strategy] )
 
 Hides the software keyboard on the device. In iOS, you have the option
 of using C<key_name> to close the keyboard by pressing a specific
@@ -252,6 +252,55 @@ sub reset {
     return $self->_execute_command( $res );
 }
 
+=method press_keycode ( keycode, [metastate])
+
+Android only: send a keycode to the device. Valid keycodes can be
+found at in the L<Android
+docs|http://developer.android.com/reference/android/view/KeyEvent.html>
+
+    $appium->press_keycode(176);
+
+=cut
+
+# todo: look up what metastate is
+
+sub press_keycode {
+    my ($self, $keycode, $metastate) = @_;
+
+    my $res = { command => 'press_keycode' };
+    my $params = {
+        keycode => $keycode,
+    };
+
+    $params->{metastate} = $metastate if $metastate;
+
+    return $self->_execute_command( $res, $params );
+}
+
+=method long_press_keycode ( keycode, [metastate])
+
+Android only: send a long press keycode to the device. Valid keycodes
+can be found at in the L<Android
+docs|http://developer.android.com/reference/android/view/KeyEvent.html>
+
+    $appium->long_press_keycode(176);
+
+=cut
+
+# todo: look up what metastate is
+
+sub long_press_keycode {
+    my ($self, $keycode, $metastate) = @_;
+
+    my $res = { command => 'long_press_keycode' };
+    my $params = {
+        keycode => $keycode,
+    };
+
+    $params->{metastate} = $metastate if $metastate;
+
+    return $self->_execute_command( $res, $params );
+}
 
 sub is_android {
     return shift->_type eq 'Android'
