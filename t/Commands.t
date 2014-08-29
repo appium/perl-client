@@ -30,6 +30,7 @@ my @implemented = qw/
                         current_activity
                         current_context
                         hide_keyboard
+                        is_app_installed
                         press_keycode
                         pull_file
                         pull_folder

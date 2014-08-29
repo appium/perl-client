@@ -94,11 +94,11 @@ has 'get_cmds' => (
                 url => 'session/:sessionId/appium/app/background',
                 no_content_success => 1
             },
-            #     is_app_installed => {
-            #         method => 'POST',
-            #         url => 'session/:sessionId/appium/device/app_installed',
-            #         no_content_success => 1
-            #     },
+            is_app_installed => {
+                method => 'POST',
+                url => 'session/:sessionId/appium/device/app_installed',
+                no_content_success => 1
+            },
             #     install_app => {
             #         method => 'POST',
             #         url => 'session/:sessionId/appium/device/install_app',

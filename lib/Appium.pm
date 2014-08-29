@@ -416,6 +416,24 @@ sub background_app {
     return $self->_execute_command( $res, $params );
 }
 
+=method is_app_installed ( $bundle_id )
+
+Check whether the application with the specified C<bundle_id> is
+installed on the device.
+
+    $appium->is_app_installed ( $bundle_id );
+
+=cut
+
+sub is_app_installed {
+    my ($self, $bundle_id) = @_;
+
+    my $res = { command => 'is_app_installed' };
+    my $params = { bundleId => $bundle_id };
+
+    return $self->_execute_command( $res, $params );
+}
+
 sub is_android {
     return shift->_type eq 'Android'
 }

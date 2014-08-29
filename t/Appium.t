@@ -96,6 +96,7 @@ FIND: {
 
 APP: {
     check_endpoint('background_app', [ 5 ], { seconds => 5 });
+    check_endpoint('is_app_installed', [ 'a fake bundle id' ], { bundleId => 'a fake bundle id' });
 }
 
 
