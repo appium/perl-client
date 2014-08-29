@@ -209,6 +209,33 @@ sub hide_keyboard {
     return $self->_execute_command( $res, $params );
 }
 
+=method app_strings ( language )
+
+Get the application strings from the device for the specified
+language.
+
+    $appium->app_strings;
+
+=cut
+
+# todo: look documentation for app strings, in particular what the
+# arguments are like
+
+sub app_strings {
+    my ($self, $language) = @_;
+
+    my $res = { command => 'app_strings' };
+    my $params;
+    if (defined $language ) {
+        $params = { language => $language }
+    }
+    else {
+        $params = {};
+    }
+
+    return $self->_execute_command( $res, $params );
+}
+
 =method reset ()
 
 Reset the current application

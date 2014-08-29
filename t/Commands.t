@@ -23,6 +23,7 @@ BEGIN: {
 my $mock_appium = MockAppium->new;
 
 my @implemented = qw/
+                        app_strings
                         contexts
                         current_context
                         hide_keyboard

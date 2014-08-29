@@ -44,11 +44,11 @@ has 'get_cmds' => (
             #         url => 'session/:sessionId/touch/multi/perform',
             #         no_content_success => 1
             #     },
-            #     get_app_strings => {
-            #         method => 'POST',
-            #         url => 'session/:sessionId/appium/app/strings',
-            #         no_content_success => 1
-            #     },
+            app_strings => {
+                method => 'POST',
+                url => 'session/:sessionId/appium/app/strings',
+                no_content_success => 1
+            },
             #     press_keycode => {
             #         method => 'POST',
             #         url => 'session/:sessionId/appium/device/press_keycode',
