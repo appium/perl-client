@@ -59,11 +59,11 @@ has 'get_cmds' => (
                 url => 'session/:sessionId/appium/device/long_press_keycode',
                 no_content_success => 1
             },
-            #     get_current_activity => {
-            #         method => 'GET',
-            #         url => 'session/:sessionId/appium/device/current_activity',
-            #         no_content_success => 0
-            #     },
+            current_activity => {
+                method => 'GET',
+                url => 'session/:sessionId/appium/device/current_activity',
+                no_content_success => 0
+            },
             #     set_immediate_value => {
             #         method => 'POST',
             #         url => 'session/:sessionId/appium/element/$elementId/value',

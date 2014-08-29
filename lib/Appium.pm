@@ -302,6 +302,22 @@ sub long_press_keycode {
     return $self->_execute_command( $res, $params );
 }
 
+=method current_activity ()
+
+Get the current activity on the device.
+
+    $appium->current_activity;
+
+=cut
+
+sub current_activity {
+    my ($self) = @_;
+
+    my $res = { command => 'current_activity' };
+
+    return $self->_execute_command( $res );
+}
+
 sub is_android {
     return shift->_type eq 'Android'
 }
