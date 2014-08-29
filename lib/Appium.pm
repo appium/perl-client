@@ -4,8 +4,13 @@ package Appium;
 use Moo;
 use Carp qw/croak/;
 
-use Appium::SwitchTo;
 use Appium::Commands;
+use Appium::Element;
+use Appium::ErrorHandler;
+use Appium::SwitchTo;
+
+use Selenium::Remote::Driver 0.2150;
+use Selenium::Remote::RemoteConnection;
 extends 'Selenium::Remote::Driver';
 
 
@@ -100,6 +105,18 @@ has '+port' => (
 has '+commands' => (
     is => 'ro',
     default => sub { Appium::Commands->new }
+);
+
+has '+remote_conn' => (
+    builder => sub {
+        my $self = shift;
+        return Selenium::Remote::RemoteConnection->new(
+            remote_server_addr => $self->remote_server_addr,
+            port               => $self->port,
+            ua                 => $self->ua,
+            error_handler      => Appium::ErrorHandler->new
+        );
+    }
 );
 
 has 'webelement_class' => (
