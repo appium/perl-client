@@ -99,8 +99,13 @@ APP: {
     check_endpoint('is_app_installed', [ 'a fake bundle id' ], { bundleId => 'a fake bundle id' });
     check_endpoint('install_app', [ '/fake/path/to.app' ], { appPath => '/fake/path/to.app' });
     check_endpoint('remove_app', [ '/fake/path/to.app' ], { appId => '/fake/path/to.app' });
-    check_endpoint('launch_app', [], undef );
-    check_endpoint('close_app', [], undef );
+    check_endpoint('launch_app');
+    check_endpoint('close_app');
+}
+
+DEVICE: {
+    check_endpoint('lock', [ 5 ], { seconds => 5 });
+    check_endpoint('shake')
 }
 
 MISC: {

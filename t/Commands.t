@@ -35,6 +35,7 @@ my @implemented = qw/
                         install_app
                         is_app_installed
                         launch_app
+                        lock
                         press_keycode
                         pull_file
                         pull_folder
@@ -42,6 +43,7 @@ my @implemented = qw/
                         long_press_keycode
                         remove_app
                         reset
+                        shake
                     /;
 
 my $cmds = Appium::Commands->new->get_cmds;

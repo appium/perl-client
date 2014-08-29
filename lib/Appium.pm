@@ -522,6 +522,38 @@ sub end_test_coverage {
     return $self->_execute_command( $res, $params );
 }
 
+=method lock ( $seconds )
+
+Lock the device for a specified number of seconds.
+
+    $appium->lock ( 5 ); # lock for 5 seconds
+
+=cut
+
+sub lock {
+    my ($self, $seconds) = @_;
+
+    my $res = { command => 'lock' };
+    my $params = { seconds => $seconds };
+
+    return $self->_execute_command( $res, $params );
+}
+
+=method shake ()
+
+Shake the device.
+
+    $appium->shake;
+
+=cut
+
+sub shake {
+    my ($self) = @_;
+
+    my $res = { command => 'shake' };
+    return $self->_execute_command( $res );
+}
+
 sub is_android {
     return shift->_type eq 'Android'
 }
