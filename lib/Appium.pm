@@ -434,6 +434,72 @@ sub is_app_installed {
     return $self->_execute_command( $res, $params );
 }
 
+=method install_app ( $app_path )
+
+Install the desired app on to the device
+
+    $appium->install_app ( '/path/to/local.app' );
+
+=cut
+
+sub install_app {
+    my ($self, $app_path) = @_;
+
+    my $res = { command => 'install_app' };
+    my $params = { appPath => $app_path };
+
+    return $self->_execute_command( $res, $params );
+}
+
+=method remove_app ( $app_id )
+
+Remove the specified application from the device by app ID.
+
+    $appium->remove_app ( 'app_id' );
+
+=cut
+
+sub remove_app {
+    my ($self, $app_id) = @_;
+
+    my $res = { command => 'remove_app' };
+    my $params = { appId => $app_id };
+
+    return $self->_execute_command( $res, $params );
+}
+
+=method launch_app ()
+
+Start the application specified in the desired capabilities on the
+device.
+
+    $appium->launch_app;
+
+=cut
+
+sub launch_app {
+    my ($self) = @_;
+
+    my $res = { command => 'launch_app' };
+    return $self->_execute_command( $res );
+}
+
+=method close_app ()
+
+Stop the running application, as specified in the desired
+capabilities.
+
+    $appium->close_app;
+
+=cut
+
+sub close_app {
+    my ($self) = @_;
+
+    my $res = { command => 'close_app' };
+    return $self->_execute_command( $res );
+}
+
 sub is_android {
     return shift->_type eq 'Android'
 }

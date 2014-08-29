@@ -25,17 +25,21 @@ my $mock_appium = MockAppium->new;
 my @implemented = qw/
                         app_strings
                         background_app
+                        close_app
                         complex_find
                         contexts
                         current_activity
                         current_context
                         hide_keyboard
+                        install_app
                         is_app_installed
+                        launch_app
                         press_keycode
                         pull_file
                         pull_folder
                         push_file
                         long_press_keycode
+                        remove_app
                         reset
                     /;
 

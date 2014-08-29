@@ -99,26 +99,26 @@ has 'get_cmds' => (
                 url => 'session/:sessionId/appium/device/app_installed',
                 no_content_success => 1
             },
-            #     install_app => {
-            #         method => 'POST',
-            #         url => 'session/:sessionId/appium/device/install_app',
-            #         no_content_success => 1
-            #     },
-            #     remove_app => {
-            #         method => 'POST',
-            #         url => 'session/:sessionId/appium/device/remove_app',
-            #         no_content_success => 1
-            #     },
-            #     launch_app => {
-            #         method => 'POST',
-            #         url => 'session/:sessionId/appium/app/launch',
-            #         no_content_success => 1
-            #     },
-            #     close_app => {
-            #         method => 'POST',
-            #         url => 'session/:sessionId/appium/app/close',
-            #         no_content_success => 1
-            #     },
+            install_app => {
+                method => 'POST',
+                url => 'session/:sessionId/appium/device/install_app',
+                no_content_success => 1
+            },
+            remove_app => {
+                method => 'POST',
+                url => 'session/:sessionId/appium/device/remove_app',
+                no_content_success => 1
+            },
+            launch_app => {
+                method => 'POST',
+                url => 'session/:sessionId/appium/app/launch',
+                no_content_success => 1
+            },
+            close_app => {
+                method => 'POST',
+                url => 'session/:sessionId/appium/app/close',
+                no_content_success => 1
+            },
             #     end_test_coverage => {
             #         method => 'POST',
             #         url => 'session/:sessionId/appium/app/end_test_coverage',
