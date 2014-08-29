@@ -13,7 +13,6 @@ use Selenium::Remote::Driver 0.2150;
 use Selenium::Remote::RemoteConnection;
 extends 'Selenium::Remote::Driver';
 
-
 =head1 SYNOPSIS
 
     my $appium = Appium->new(caps => {
@@ -80,13 +79,13 @@ elements by accessibility_id.
 use constant FINDERS => {
     class               => 'class name',
     class_name          => 'class name',
-    css                 => 'css selector',
+    # css                 => 'css selector',
     id                  => 'id',
-    link                => 'link text',
-    link_text           => 'link text',
+    # link                => 'link text',
+    # link_text           => 'link text',
     name                => 'name',
-    partial_link_text   => 'partial link text',
-    tag_name            => 'tag name',
+    # partial_link_text   => 'partial link text',
+    # tag_name            => 'tag name',
     xpath               => 'xpath',
     ios                 => '-ios uiautomation',
     ios_uiautomation    => '-ios uiautomation',
