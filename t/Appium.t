@@ -81,10 +81,12 @@ ANDROID_KEYCODES: {
 
 }
 
-PULL_FROM_DEVICE: {
+PUSH_PULL: {
     my $path = '/fake/path';
+    my $data = 'pretend to be base 64 encoded';
     check_endpoint('pull_file', [ $path ], { path => $path });
     check_endpoint('pull_folder', [ $path ], { path => $path });
+    check_endpoint('push_file', [ $path, $data ], { path => $path, data => $data });
 }
 
 sub check_endpoint {

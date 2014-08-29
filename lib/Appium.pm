@@ -357,6 +357,26 @@ sub pull_folder {
     return $self->_execute_command( $res, $params );
 }
 
+=method push_file ( $path, $encoded_data )
+
+Puts the data in the file specified by C<path> on the device. The data
+must be base64 encoded.
+
+    $appium->push_file ( '/file/path', $base64_data );
+
+=cut
+
+sub push_file {
+    my ($self, $path, $data) = @_;
+
+    my $res = { command => 'push_file' };
+    my $params = {
+        path => $path,
+        data => $data
+    };
+
+    return $self->_execute_command( $res, $params );
+}
 sub is_android {
     return shift->_type eq 'Android'
 }

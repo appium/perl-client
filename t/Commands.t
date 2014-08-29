@@ -31,6 +31,7 @@ my @implemented = qw/
                         press_keycode
                         pull_file
                         pull_folder
+                        push_file
                         long_press_keycode
                         reset
                     /;
