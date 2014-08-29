@@ -76,51 +76,50 @@ HIDE_KEYBOARD: {
 
 ANDROID_KEYCODES: {
     my $code = 176;
-    check_endpoint('press_keycode', [ $code ], { keycode => $code });
-    check_endpoint('long_press_keycode', [ $code, 'metastate' ], { keycode => $code, metastate => 'metastate' });
+    endpoint_ok('press_keycode', [ $code ], { keycode => $code });
+    endpoint_ok('long_press_keycode', [ $code, 'metastate' ], { keycode => $code, metastate => 'metastate' });
 
 }
 
 PUSH_PULL: {
     my $path = '/fake/path';
     my $data = 'pretend to be base 64 encoded';
-    check_endpoint('pull_file', [ $path ], { path => $path });
-    check_endpoint('pull_folder', [ $path ], { path => $path });
-    check_endpoint('push_file', [ $path, $data ], { path => $path, data => $data });
+    endpoint_ok('pull_file', [ $path ], { path => $path });
+    endpoint_ok('pull_folder', [ $path ], { path => $path });
+    endpoint_ok('push_file', [ $path, $data ], { path => $path, data => $data });
 }
 
 FIND: {
     my @selector = qw/fake selection critera/;
-    check_endpoint('complex_find', [ @selector ], { selector => \@selector });
+    endpoint_ok('complex_find', [ @selector ], { selector => \@selector });
 }
 
 APP: {
-    check_endpoint('background_app', [ 5 ], { seconds => 5 });
-    check_endpoint('is_app_installed', [ 'a fake bundle id' ], { bundleId => 'a fake bundle id' });
-    check_endpoint('install_app', [ '/fake/path/to.app' ], { appPath => '/fake/path/to.app' });
-    check_endpoint('remove_app', [ '/fake/path/to.app' ], { appId => '/fake/path/to.app' });
-    check_endpoint('launch_app');
-    check_endpoint('close_app');
+    endpoint_ok('background_app', [ 5 ], { seconds => 5 });
+    endpoint_ok('is_app_installed', [ 'a fake bundle id' ], { bundleId => 'a fake bundle id' });
+    endpoint_ok('install_app', [ '/fake/path/to.app' ], { appPath => '/fake/path/to.app' });
+    endpoint_ok('remove_app', [ '/fake/path/to.app' ], { appId => '/fake/path/to.app' });
+    endpoint_ok('launch_app');
+    endpoint_ok('close_app');
 }
 
 DEVICE: {
-    check_endpoint('lock', [ 5 ], { seconds => 5 });
-    check_endpoint('shake');
-    check_endpoint('open_notifications');
-    check_endpoint('network_connection');
-    check_endpoint('set_network_connection', [ 6 ], { parameters => { type => 6 } });
+    endpoint_ok('lock', [ 5 ], { seconds => 5 });
+    endpoint_ok('shake');
+    endpoint_ok('open_notifications');
+    endpoint_ok('network_connection');
+    endpoint_ok('set_network_connection', [ 6 ], { parameters => { type => 6 } });
 }
 
 MISC: {
-    check_endpoint('end_test_coverage', [ 'intent', 'path' ], {
+    endpoint_ok('end_test_coverage', [ 'intent', 'path' ], {
         intent => 'intent',
         path => 'path'
     });
 
 }
 
-
-sub check_endpoint {
+sub endpoint_ok {
     my ($endpoint, $args, $expected) = @_;
 
     my ($res, $params) = $mock_appium->$endpoint(@{ $args });
