@@ -377,6 +377,27 @@ sub push_file {
 
     return $self->_execute_command( $res, $params );
 }
+
+=method complex_find ( $selector )
+
+Search for elements in the current application, given an array of
+selection criteria.
+
+    $appium->complex_find ( $selector );
+
+=cut
+
+sub complex_find {
+    my ($self, @selector) = @_;
+    croak 'Please specify selection criteria'
+      unless scalar @selector;
+
+    my $res = { command => 'complex_find' };
+    my $params = { selector => \@selector };
+
+    return $self->_execute_command( $res, $params );
+}
+
 sub is_android {
     return shift->_type eq 'Android'
 }

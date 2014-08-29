@@ -79,14 +79,14 @@ has 'get_cmds' => (
                 url => 'session/:sessionId/appium/device/pull_folder',
                 no_content_success => 0
             },
-            #     complex_find => {
-            #         method => 'POST',
-            #         url => 'session/:sessionId/appium/app/complex_find',
-            #         no_content_success => 1
-            #     },
             push_file => {
                 method => 'POST',
                 url => 'session/:sessionId/appium/device/push_file',
+                no_content_success => 1
+            },
+            complex_find => {
+                method => 'POST',
+                url => 'session/:sessionId/appium/app/complex_find',
                 no_content_success => 1
             },
             #     background => {

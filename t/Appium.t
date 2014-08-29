@@ -89,6 +89,13 @@ PUSH_PULL: {
     check_endpoint('push_file', [ $path, $data ], { path => $path, data => $data });
 }
 
+FIND: {
+    my @selector = qw/fake selection critera/;
+    check_endpoint('complex_find', [ @selector ], { selector => \@selector });
+
+}
+
+
 sub check_endpoint {
     my ($endpoint, $args, $expected) = @_;
 
