@@ -4,7 +4,9 @@ use strict;
 use warnings;
 use JSON;
 use Test::More;
+use Test::Deep;
 use Cwd qw/abs_path/;
+use Appium::Commands;
 
 BEGIN: {
     my $test_lib = abs_path(__FILE__);
@@ -19,10 +21,12 @@ BEGIN: {
 }
 
 my $mock_appium = MockAppium->new;
+my @aliases = keys %{ Appium::Commands->new->get_cmds };
 
 CONTEXT: {
     my $context = 'WEBVIEW_1';
-    my (undef, $params) = $mock_appium->switch_to->context( $context );
+    my ($res, $params) = $mock_appium->switch_to->context( $context );
+    alias_ok('switch_to->context', $res);
     cmp_ok($params->{name}, 'eq', $context, 'can switch to a context');
 }
 
@@ -71,13 +75,35 @@ HIDE_KEYBOARD: {
 }
 
 ANDROID_KEYCODES: {
-    my (undef, $params) = $mock_appium->press_keycode( 176 );
-    cmp_ok($params->{keycode}, 'eq', 176, 'keycodes are passed through');
-    ok(!defined $params->{metastate}, 'metastate is optional');
+    my $code = 176;
+    check_endpoint('press_keycode', [ $code ], { keycode => $code });
+    check_endpoint('long_press_keycode', [ $code, 'metastate' ], { keycode => $code, metastate => 'metastate' });
 
-    (undef, $params) = $mock_appium->long_press_keycode( 176 );
-    cmp_ok($params->{keycode}, 'eq', 176, 'keycodes are passed through');
-    ok(!defined $params->{metastate}, 'metastate is optional');
 }
+
+PULL_FROM_DEVICE: {
+    my $path = '/fake/path';
+    check_endpoint('pull_file', [ $path ], { path => $path });
+}
+
+sub check_endpoint {
+    my ($endpoint, $args, $expected) = @_;
+
+    my ($res, $params) = $mock_appium->$endpoint(@{ $args });
+
+    # check it's in the commands hash
+    alias_ok($endpoint, $res);
+
+    # validate the args get processed as expected
+    cmp_deeply($params, $expected, $endpoint . ': params are properly organized');
+}
+
+sub alias_ok {
+    my ($endpoint, $res) = @_;
+    my @alias_found = grep { $_ eq $res->{command} } @aliases;
+    return ok(@alias_found, $endpoint . ': has a valid endpoint alias');
+}
+
+
 
 done_testing;
