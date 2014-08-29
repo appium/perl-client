@@ -24,6 +24,7 @@ my $mock_appium = MockAppium->new;
 
 my @implemented = qw/
                         app_strings
+                        background_app
                         complex_find
                         contexts
                         current_activity

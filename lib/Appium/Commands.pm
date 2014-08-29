@@ -89,11 +89,11 @@ has 'get_cmds' => (
                 url => 'session/:sessionId/appium/app/complex_find',
                 no_content_success => 1
             },
-            #     background => {
-            #         method => 'POST',
-            #         url => 'session/:sessionId/appium/app/background',
-            #         no_content_success => 1
-            #     },
+            background_app => {
+                method => 'POST',
+                url => 'session/:sessionId/appium/app/background',
+                no_content_success => 1
+            },
             #     is_app_installed => {
             #         method => 'POST',
             #         url => 'session/:sessionId/appium/device/app_installed',

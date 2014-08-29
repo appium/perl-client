@@ -92,7 +92,10 @@ PUSH_PULL: {
 FIND: {
     my @selector = qw/fake selection critera/;
     check_endpoint('complex_find', [ @selector ], { selector => \@selector });
+}
 
+APP: {
+    check_endpoint('background_app', [ 5 ], { seconds => 5 });
 }
 
 

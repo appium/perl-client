@@ -398,6 +398,24 @@ sub complex_find {
     return $self->_execute_command( $res, $params );
 }
 
+=method background_app ( $time_in_seconds )
+
+Defer the application to the background on the device for the
+interval, given in seconds.
+
+    $appium->background_app ( 5 );
+
+=cut
+
+sub background_app {
+    my ($self, $seconds) = @_;
+
+    my $res = { command => 'background_app' };
+    my $params = { seconds => $seconds};
+
+    return $self->_execute_command( $res, $params );
+}
+
 sub is_android {
     return shift->_type eq 'Android'
 }
