@@ -30,6 +30,7 @@ my @implemented = qw/
                         hide_keyboard
                         press_keycode
                         pull_file
+                        pull_folder
                         long_press_keycode
                         reset
                     /;
@@ -40,7 +41,7 @@ DRIVER_COMMANDS: {
     foreach my $command (@implemented) {
         ok($mock_appium->can($command), 'Appium can ' . $command);
 
-        my ($res, undef) = $mock_appium->$command;
+        my ($res, undef) = $mock_appium->$command( 'fake', 'args' );
         delete $cmds->{ $res->{command} };
     }
 }

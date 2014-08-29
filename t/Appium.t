@@ -84,6 +84,7 @@ ANDROID_KEYCODES: {
 PULL_FROM_DEVICE: {
     my $path = '/fake/path';
     check_endpoint('pull_file', [ $path ], { path => $path });
+    check_endpoint('pull_folder', [ $path ], { path => $path });
 }
 
 sub check_endpoint {

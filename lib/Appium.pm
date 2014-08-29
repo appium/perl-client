@@ -337,6 +337,26 @@ sub pull_file {
     return $self->_execute_command( $res, $params );
 }
 
+=method pull_folder ( $path )
+
+Retrieve a folder at path, returning the folder's contents in a zip
+file.
+
+    $appium->pull_folder ( 'folder' );
+
+=cut
+
+sub pull_folder {
+    my ($self, $path) = @_;
+    croak 'Please specify a folder path to pull'
+      unless defined $path;
+
+    my $res = { command => 'pull_folder' };
+    my $params = { path => $path };
+
+    return $self->_execute_command( $res, $params );
+}
+
 sub is_android {
     return shift->_type eq 'Android'
 }
