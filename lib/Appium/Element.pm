@@ -52,8 +52,6 @@ sub set_text_ios {
     return $self->driver->execute_script('au.getElement("' . $self->id . '").setValue("' . $keys . '");');
 }
 
-
-
 =method set_value ( $value )
 
 Immediately set the value of an element in the application.

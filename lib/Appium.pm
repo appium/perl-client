@@ -28,14 +28,25 @@ extends 'Selenium::Remote::Driver';
 Appium is an open source test automation framework for use with native
 and hybrid mobile apps.  It drives iOS and Android apps using the
 WebDriver JSON wire protocol. This module is a thin extension of
-L<Selenium::Remote::Driver> that adds Appium specific API endpoints and
-Appium-specific constructor defaults.
+L<Selenium::Remote::Driver> that adds Appium specific API endpoints
+and Appium-specific constructor defaults. This module is woefully
+incomplete at the moment. Feel free to pitch in at the L<Github
+repo|https://github.com/appium/perl-client>!
 
 For details on how Appium extends the Webdriver spec, see the Selenium
 project's L<spec-draft
 document|https://code.google.com/p/selenium/source/browse/spec-draft.md?repo=mobile>
 
-This module is woefully incomplete at the moment. Feel free to pitch in!
+Note that like L<Selenium::Remote::Driver>, you shouldn't have to
+instantiate any L<Appium::Elements> on your own; this module will
+create them when necessary so that all you need to know is what
+methods are appropriate on an element vs the driver.
+
+    my $appium = Appium->new( caps => { app => '/path/to/app.zip' } );
+
+    # automatically instantiates Appium::Element for you
+    my $elem = $appium->find_element('test', 'id');
+    $elem->click;
 
 =cut
 
