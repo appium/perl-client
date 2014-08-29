@@ -176,7 +176,6 @@ has 'switch_to' => (
     default => sub { Appium::SwitchTo->new( driver => shift );  }
 );
 
-
 =method hide_keyboard( key_name|key|strategy => $key_or_strategy )
 
 Hides the software keyboard on the device. In iOS, you have the option
@@ -186,7 +185,7 @@ is C<tapOutside>. In Android, no parameters are used.
 
     $appium->hide_keyboard;
     $appium->hide_keyboard( key_name => 'Done');
-    $appium->hide_keyboard( strategy => 'tapOutside', key => 'Done');
+    $appium->hide_keyboard( strategy => 'pressKey', key => 'Done');
 
 =cut
 
