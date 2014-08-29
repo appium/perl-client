@@ -105,7 +105,10 @@ APP: {
 
 DEVICE: {
     check_endpoint('lock', [ 5 ], { seconds => 5 });
-    check_endpoint('shake')
+    check_endpoint('shake');
+    check_endpoint('open_notifications');
+    check_endpoint('network_connection');
+    check_endpoint('set_network_connection', [ 6 ], { parameters => { type => 6 } });
 }
 
 MISC: {

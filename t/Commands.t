@@ -36,6 +36,8 @@ my @implemented = qw/
                         is_app_installed
                         launch_app
                         lock
+                        network_connection
+                        open_notifications
                         press_keycode
                         pull_file
                         pull_folder
@@ -43,6 +45,7 @@ my @implemented = qw/
                         long_press_keycode
                         remove_app
                         reset
+                        set_network_connection
                         shake
                     /;
 

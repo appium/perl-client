@@ -554,6 +554,71 @@ sub shake {
     return $self->_execute_command( $res );
 }
 
+=method open_notifs ()
+
+Android only, API level 18 and above: open the notification shade on
+Android.
+
+    $appium->open_notifs;
+
+=cut
+
+sub open_notifications {
+    my ($self) = @_;
+
+    my $res = { command => 'open_notifications' };
+    return $self->_execute_command( $res );
+}
+
+=method network_connection ()
+
+Android only: retrieve an integer bitmask that describes the current
+network connection configuration. Possible values are listed in
+L</set_network_connection>.
+
+    $appium->network_connection;
+
+=cut
+
+sub network_connection {
+    my ($self) = @_;
+
+    my $res = { command => 'network_connection' };
+    return $self->_execute_command( $res );
+}
+
+=method set_network_connection ( $connection_type_bitmask )
+
+Android only: set the network connection type according to the
+following bitmask:
+
+    # Value (Alias)      | Data | Wifi | Airplane Mode
+    # -------------------------------------------------
+    # 0 (None)           | 0    | 0    | 0
+    # 1 (Airplane Mode)  | 0    | 0    | 1
+    # 2 (Wifi only)      | 0    | 1    | 0
+    # 4 (Data only)      | 1    | 0    | 0
+    # 6 (All network on) | 1    | 1    | 0
+
+    $appium->set_network_connection(6);
+
+=cut
+
+# todo: figure out what appium expects here as its input
+
+sub set_network_connection {
+    my ($self, $connection_bitmask) = @_;
+
+    my $res = { command => 'set_network_connection' };
+    my $params = {
+        parameters => {
+            type => $connection_bitmask
+        }
+    };
+
+    return $self->_execute_command( $res, $params );
+}
+
 sub is_android {
     return shift->_type eq 'Android'
 }

@@ -144,21 +144,21 @@ has 'get_cmds' => (
                 url => 'session/:sessionId/appium/device/hide_keyboard',
                 no_content_success => 1
             },
-            #     open_notifications => {
-            #         method => 'POST',
-            #         url => 'session/:sessionId/appium/device/open_notifications',
-            #         no_content_success => 1
-            #     },
-            #     get_network_connection => {
-            #         method => 'GET',
-            #         url => 'session/:sessionId/network_connection',
-            #         no_content_success => 0
-            #     },
-            #     set_network_connection => {
-            #         method => 'POST',
-            #         url => 'session/:sessionId/network_connection',
-            #         no_content_success => 1
-            #     },
+            open_notifications => {
+                method => 'POST',
+                url => 'session/:sessionId/appium/device/open_notifications',
+                no_content_success => 1
+            },
+            network_connection => {
+                method => 'GET',
+                url => 'session/:sessionId/network_connection',
+                no_content_success => 0
+            },
+            set_network_connection => {
+                method => 'POST',
+                url => 'session/:sessionId/network_connection',
+                no_content_success => 1
+            },
             #     get_available_ime_engines => {
             #         method => 'GET',
             #         url => 'session/:sessionId/ime/available_engines',
