@@ -103,6 +103,14 @@ APP: {
     check_endpoint('close_app', [], undef );
 }
 
+MISC: {
+    check_endpoint('end_test_coverage', [ 'intent', 'path' ], {
+        intent => 'intent',
+        path => 'path'
+    });
+
+}
+
 
 sub check_endpoint {
     my ($endpoint, $args, $expected) = @_;

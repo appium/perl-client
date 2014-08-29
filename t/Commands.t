@@ -30,6 +30,7 @@ my @implemented = qw/
                         contexts
                         current_activity
                         current_context
+                        end_test_coverage
                         hide_keyboard
                         install_app
                         is_app_installed

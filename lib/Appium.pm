@@ -500,6 +500,28 @@ sub close_app {
     return $self->_execute_command( $res );
 }
 
+=method end_test_coverage ( $intent, $path )
+
+Android only: end the coverage collection and download the specified
+C<coverage.ec> file from the device. The file will be returned base 64
+encoded.
+
+    $appium->end_test_coverage( 'intent', '/path/to/coverage.ec' );
+
+=cut
+
+sub end_test_coverage {
+    my ($self, $intent, $path) = @_;
+
+    my $res = { command => 'end_test_coverage' };
+    my $params = {
+        intent => $intent,
+        path => $path
+    };
+
+    return $self->_execute_command( $res, $params );
+}
+
 sub is_android {
     return shift->_type eq 'Android'
 }

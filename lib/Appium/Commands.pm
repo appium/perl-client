@@ -119,21 +119,21 @@ has 'get_cmds' => (
                 url => 'session/:sessionId/appium/app/close',
                 no_content_success => 1
             },
-            #     end_test_coverage => {
-            #         method => 'POST',
-            #         url => 'session/:sessionId/appium/app/end_test_coverage',
-            #         no_content_success => 1
-            #     },
-            #     lock => {
-            #         method => 'POST',
-            #         url => 'session/:sessionId/appium/device/lock',
-            #         no_content_success => 1
-            #     },
-            #     shake => {
-            #         method => 'POST',
-            #         url => 'session/:sessionId/appium/device/shake',
-            #         no_content_success => 1
-            #     },
+            end_test_coverage => {
+                method => 'POST',
+                url => 'session/:sessionId/appium/app/end_test_coverage',
+                no_content_success => 1
+            },
+            lock => {
+                method => 'POST',
+                url => 'session/:sessionId/appium/device/lock',
+                no_content_success => 1
+            },
+            shake => {
+                method => 'POST',
+                url => 'session/:sessionId/appium/device/shake',
+                no_content_success => 1
+            },
             reset => {
                 method => 'POST',
                 url => 'session/:sessionId/appium/app/reset',
