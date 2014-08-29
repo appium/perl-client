@@ -4,7 +4,6 @@ use strict;
 use warnings;
 use JSON;
 use Test::More;
-use Test::Deep;
 use Cwd qw/abs_path/;
 use Appium::Commands;
 
@@ -13,6 +12,7 @@ BEGIN: {
     $test_lib =~ s/(.*)\/.*\.t$/$1\/lib/;
     push @INC, $test_lib;
     require MockAppium;
+    MockAppium->import(qw/endpoint_ok alias_ok/);
 
     unless (use_ok('Appium')) {
         BAIL_OUT("Couldn't load Appium");
@@ -21,7 +21,6 @@ BEGIN: {
 }
 
 my $mock_appium = MockAppium->new;
-my @aliases = keys %{ Appium::Commands->new->get_cmds };
 
 CONTEXT: {
     my $context = 'WEBVIEW_1';
@@ -118,25 +117,5 @@ MISC: {
     });
 
 }
-
-sub endpoint_ok {
-    my ($endpoint, $args, $expected) = @_;
-
-    my ($res, $params) = $mock_appium->$endpoint(@{ $args });
-
-    # check it's in the commands hash
-    alias_ok($endpoint, $res);
-
-    # validate the args get processed as expected
-    cmp_deeply($params, $expected, $endpoint . ': params are properly organized');
-}
-
-sub alias_ok {
-    my ($endpoint, $res) = @_;
-    my @alias_found = grep { $_ eq $res->{command} } @aliases;
-    return ok(@alias_found, $endpoint . ': has a valid endpoint alias');
-}
-
-
 
 done_testing;
