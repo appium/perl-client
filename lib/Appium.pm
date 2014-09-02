@@ -596,12 +596,12 @@ sub shake {
     return $self->_execute_command( $res );
 }
 
-=method open_notifs ()
+=method open_notifications ()
 
 Android only, API level 18 and above: open the notification shade on
 Android.
 
-    $appium->open_notifs;
+    $appium->open_notifications;
 
 =cut
 
