@@ -255,7 +255,7 @@ language; it will return English strings by default if the language
 argument is omitted.
 
     $appium->app_strings
-    $appium->app_strings ( 'en' );
+    $appium->app_strings( 'en' );
 
 =cut
 
@@ -382,7 +382,7 @@ sub pull_file {
 Retrieve a folder at path, returning the folder's contents in a zip
 file.
 
-    $appium->pull_folder ( 'folder' );
+    $appium->pull_folder( 'folder' );
 
 =cut
 
@@ -402,7 +402,7 @@ sub pull_folder {
 Puts the data in the file specified by C<path> on the device. The data
 must be base64 encoded.
 
-    $appium->push_file ( '/file/path', $base64_data );
+    $appium->push_file( '/file/path', $base64_data );
 
 =cut
 
@@ -423,7 +423,7 @@ sub push_file {
 Search for elements in the current application, given an array of
 selection criteria.
 
-    $appium->complex_find ( $selector );
+    $appium->complex_find( $selector );
 
 =cut
 
@@ -445,7 +445,7 @@ sub complex_find {
 Defer the application to the background on the device for the
 interval, given in seconds.
 
-    $appium->background_app ( 5 );
+    $appium->background_app( 5 );
 
 =cut
 
@@ -463,7 +463,7 @@ sub background_app {
 Check whether the application with the specified C<bundle_id> is
 installed on the device.
 
-    $appium->is_app_installed ( $bundle_id );
+    $appium->is_app_installed( $bundle_id );
 
 =cut
 
@@ -480,7 +480,7 @@ sub is_app_installed {
 
 Install the desired app on to the device
 
-    $appium->install_app ( '/path/to/local.app' );
+    $appium->install_app( '/path/to/local.app' );
 
 =cut
 
@@ -493,11 +493,11 @@ sub install_app {
     return $self->_execute_command( $res, $params );
 }
 
-=method remove_app ( $app_id )
+=method remove_app( $app_id )
 
 Remove the specified application from the device by app ID.
 
-    $appium->remove_app ( 'app_id' );
+    $appium->remove_app( 'app_id' );
 
 =cut
 
@@ -568,7 +568,7 @@ sub end_test_coverage {
 
 Lock the device for a specified number of seconds.
 
-    $appium->lock ( 5 ); # lock for 5 seconds
+    $appium->lock( 5 ); # lock for 5 seconds
 
 =cut
 
