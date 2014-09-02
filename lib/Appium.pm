@@ -362,7 +362,7 @@ sub current_activity {
 
 Pull a file from the device, returning it Base64 encoded.
 
-    $appium->pull_file( $file );
+    $appium->pull_file( '/tmp/file/to.pull' );
 
 =cut
 
@@ -426,6 +426,8 @@ selection criteria.
     $appium->complex_find ( $selector );
 
 =cut
+
+# todo: add better examples of complex find
 
 sub complex_find {
     my ($self, @selector) = @_;
@@ -643,8 +645,6 @@ following bitmask:
     $appium->set_network_connection(6);
 
 =cut
-
-# todo: figure out what appium expects here as its input
 
 sub set_network_connection {
     my ($self, $connection_bitmask) = @_;
