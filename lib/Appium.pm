@@ -28,8 +28,8 @@ Appium is an open source test automation framework for use with native
 and hybrid mobile apps.  It drives iOS and Android apps using the
 WebDriver JSON wire protocol. This module is a thin extension of
 L<Selenium::Remote::Driver> that adds Appium specific API endpoints
-and Appium-specific constructor defaults. This module is woefully
-incomplete at the moment. Feel free to pitch in at the L<Github
+and Appium-specific constructor defaults. It's woefully incomplete at
+the moment, so feel free to pitch in at the L<Github
 repo|https://github.com/appium/perl-client>!
 
 For details on how Appium extends the Webdriver spec, see the Selenium
@@ -37,9 +37,9 @@ project's L<spec-draft
 document|https://code.google.com/p/selenium/source/browse/spec-draft.md?repo=mobile>
 
 Note that like L<Selenium::Remote::Driver>, you shouldn't have to
-instantiate any L<Appium::Elements> on your own; this module will
-create them when necessary so that all you need to know is what
-methods are appropriate on an element vs the driver.
+instantiate L<Appium::Element> on your own; this module will create
+them when necessary so that all you need to know is what methods are
+appropriate on an element vs the driver.
 
     my $appium = Appium->new( caps => { app => '/path/to/app.zip' } );
 
@@ -64,7 +64,7 @@ applications and webviews, use the analogous context methods:
 
 =head3 Finding Elements
 
-There are additional strategies available for finding elements in
+There are different strategies available for finding elements in
 Appium:
 
     $driver->find_element( 'ios' , 'ios' );         # iOS UIAutomation
@@ -72,20 +72,23 @@ Appium:
     $driver->find_element( 'identifier' , 'accessibility_id' );
 
 Note that using C<id> as your finding strategy also seems to find
-elements by accessibility_id.
+elements by accessibility_id. The options for strategies are:
+
+    id                          => 'id',
+    name                        => 'name',
+    xpath                       => 'xpath',
+    class|class_name            => 'class name',
+    accessibility_id            => 'accessibility id'
+    ios|ios_uiautomation        => '-ios uiautomation',
+    android|android_uiautomator => '-android uiautomator'
 
 =cut
 
 use constant FINDERS => {
     class               => 'class name',
     class_name          => 'class name',
-    # css                 => 'css selector',
     id                  => 'id',
-    # link                => 'link text',
-    # link_text           => 'link text',
     name                => 'name',
-    # partial_link_text   => 'partial link text',
-    # tag_name            => 'tag name',
     xpath               => 'xpath',
     ios                 => '-ios uiautomation',
     ios_uiautomation    => '-ios uiautomation',
@@ -245,17 +248,16 @@ sub hide_keyboard {
     return $self->_execute_command( $res, $params );
 }
 
-=method app_strings ( language )
+=method app_strings ( [language] )
 
 Get the application strings from the device for the specified
-language.
+language; it will return English strings by default if the language
+argument is omitted.
 
-    $appium->app_strings;
+    $appium->app_strings
+    $appium->app_strings ( 'en' );
 
 =cut
-
-# todo: look documentation for app strings, in particular what the
-# arguments are like
 
 sub app_strings {
     my ($self, $language) = @_;
@@ -291,14 +293,15 @@ sub reset {
 =method press_keycode ( keycode, [metastate])
 
 Android only: send a keycode to the device. Valid keycodes can be
-found at in the L<Android
-docs|http://developer.android.com/reference/android/view/KeyEvent.html>
+found in the L<Android
+docs|http://developer.android.com/reference/android/view/KeyEvent.html>.
+C<metastate> describes the pressed state of key modifiers such as
+META_SHIFT_ON or META_ALT_ON; more information is available in the
+Android KeyEvent documentation.
 
     $appium->press_keycode(176);
 
 =cut
-
-# todo: look up what metastate is
 
 sub press_keycode {
     my ($self, $keycode, $metastate) = @_;
@@ -316,14 +319,15 @@ sub press_keycode {
 =method long_press_keycode ( keycode, [metastate])
 
 Android only: send a long press keycode to the device. Valid keycodes
-can be found at in the L<Android
-docs|http://developer.android.com/reference/android/view/KeyEvent.html>
+can be found in the L<Android
+docs|http://developer.android.com/reference/android/view/KeyEvent.html>.
+C<metastate> describes the pressed state of key modifiers such as
+META_SHIFT_ON or META_ALT_ON; more information is available in the
+Android KeyEvent documentation.
 
     $appium->long_press_keycode(176);
 
 =cut
-
-# todo: look up what metastate is
 
 sub long_press_keycode {
     my ($self, $keycode, $metastate) = @_;
