@@ -5,6 +5,7 @@ requires "Selenium::Remote::Driver" => "0.2150";
 requires "Selenium::Remote::ErrorHandler" => "0";
 requires "Selenium::Remote::RemoteConnection" => "0";
 requires "Selenium::Remote::WebElement" => "0";
+requires "constant" => "0";
 
 on 'test' => sub {
   requires "Cwd" => "0";
