@@ -1,5 +1,6 @@
 package Appium::Element;
 
+# ABSTRACT: Representation of an Appium element
 use Moo;
 use Carp qw/croak/;
 extends 'Selenium::Remote::WebElement';
