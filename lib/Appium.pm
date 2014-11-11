@@ -65,14 +65,7 @@ applications and webviews, use the analogous context methods:
 =head3 Finding Elements
 
 There are different strategies available for finding elements in
-Appium:
-
-    $driver->find_element( 'ios' , 'ios' );         # iOS UIAutomation
-    $driver->find_element( 'android' , 'android' ); # Android UIAutomator
-    $driver->find_element( 'identifier' , 'accessibility_id' );
-
-Note that using C<id> as your finding strategy also seems to find
-elements by accessibility_id. The options for strategies are:
+Appium. The options for strategies are:
 
     id                          => 'id',
     name                        => 'name',
@@ -81,6 +74,20 @@ elements by accessibility_id. The options for strategies are:
     accessibility_id            => 'accessibility id'
     ios|ios_uiautomation        => '-ios uiautomation',
     android|android_uiautomator => '-android uiautomator'
+
+Here are some examples of using the Appium specific strategies:
+
+    # iOS UIAutomation
+    $driver->find_element( $locator , 'ios' );
+
+    # Android UIAutomator
+    $driver->find_element( $locator , 'android' );
+
+    # iOS accessibility identifier
+    $driver->find_element( $locator , 'accessibility_id' );
+
+Note that using C<id> as your finding strategy also seems to find
+elements by accessibility_id.
 
 =cut
 
