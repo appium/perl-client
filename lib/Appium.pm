@@ -13,6 +13,8 @@ use Selenium::Remote::Driver 0.22;
 use Selenium::Remote::RemoteConnection;
 extends 'Selenium::Remote::Driver';
 
+=for markdown [![Build Status](https://travis-ci.org/appium/perl-client.svg?branch=master)](https://travis-ci.org/appium/perl-client)
+
 =head1 SYNOPSIS
 
     my $appium = Appium->new(caps => {

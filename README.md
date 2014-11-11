@@ -2,6 +2,8 @@
 
 Appium - Perl bindings to the Appium mobile automation framework (WIP)
 
+[![Build Status](https://travis-ci.org/appium/perl-client.svg?branch=master)](https://travis-ci.org/appium/perl-client)
+
 # VERSION
 
 version 0.03
