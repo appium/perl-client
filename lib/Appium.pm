@@ -145,14 +145,13 @@ has '_type' => (
     is => 'rw',
     lazy => 1,
     coerce => sub {
-        my $device = shift;
+        my $device = shift || 'iOS';
 
         croak 'platformName must be Android or iOS'
           unless grep { $_ eq $device } qw/Android iOS/;
 
         return $device;
-    },
-    default => sub { 'iOS' }
+    }
 );
 
 has '+port' => (
