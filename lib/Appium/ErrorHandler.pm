@@ -1,23 +1,20 @@
-package Appium::SwitchTo;
-$Appium::SwitchTo::VERSION = '0.03';
-# ABSTRACT: Provide access to Appium's context switching functionality
+package Appium::ErrorHandler;
+$Appium::ErrorHandler::VERSION = '0.03';
+# ABSTRACT: Reformat the error messages for user consumption
 use Moo;
+extends 'Selenium::Remote::ErrorHandler';
 
-has 'driver' => (
-    is => 'ro',
-    required => 1,
-    handles => [qw/_execute_command/]
-);
+sub process_error {
+    my ($self, $resp) = @_;
+    my $value = $resp->{value};
 
-
-sub context {
-    my ($self, $context_name ) = @_;
-
-    my $res = { command => 'switch_to_context' };
-    my $params = { name => $context_name };
-
-    return $self->_execute_command( $res, $params );
+    return {
+        stackTrace => $value->{stackTrace},
+        error => $self->STATUS_CODE->{$resp->{status}},
+        message => $value->{origValue} || $value->{message}
+    };
 }
+
 
 1;
 
@@ -29,19 +26,11 @@ __END__
 
 =head1 NAME
 
-Appium::SwitchTo - Provide access to Appium's context switching functionality
+Appium::ErrorHandler - Reformat the error messages for user consumption
 
 =head1 VERSION
 
 version 0.03
-
-=head1 METHODS
-
-=head2 context ( $context_name )
-
-Set the context for the current session.
-
-    $appium->switch_to->context( 'WEBVIEW_1' );
 
 =head1 SEE ALSO
 

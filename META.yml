@@ -5,6 +5,7 @@ author:
 build_requires:
   Cwd: '0'
   JSON: '0'
+  Test::Deep: '0'
   Test::LWP::UserAgent: '0'
   Test::MockObject::Extends: '0'
   Test::More: '0'
@@ -23,8 +24,14 @@ requires:
   Carp: '0'
   Moo: '0'
   Selenium::Remote::Commands: '0'
-  Selenium::Remote::Driver: '0'
+  Selenium::Remote::Driver: '0.22'
+  Selenium::Remote::ErrorHandler: '0'
+  Selenium::Remote::RemoteConnection: '0'
+  Selenium::Remote::WebElement: '0'
+  constant: '0'
 resources:
-  bugtracker: https://github.com/gempesaw/Appium-Perl-Client/issues
-  repository: git://github.com/gempesaw/Appium-Perl-Client.git
-version: '0.02'
+  bugtracker: https://github.com/appium/perl-client/issues
+  repository: git://github.com/appium/perl-client.git
+version: '0.03'
+x_contributors:
+  - 'Freddy Vega <freddy@vgp-miami.com>'

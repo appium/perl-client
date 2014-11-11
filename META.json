@@ -31,13 +31,18 @@
             "Carp" : "0",
             "Moo" : "0",
             "Selenium::Remote::Commands" : "0",
-            "Selenium::Remote::Driver" : "0"
+            "Selenium::Remote::Driver" : "0.22",
+            "Selenium::Remote::ErrorHandler" : "0",
+            "Selenium::Remote::RemoteConnection" : "0",
+            "Selenium::Remote::WebElement" : "0",
+            "constant" : "0"
          }
       },
       "test" : {
          "requires" : {
             "Cwd" : "0",
             "JSON" : "0",
+            "Test::Deep" : "0",
             "Test::LWP::UserAgent" : "0",
             "Test::MockObject::Extends" : "0",
             "Test::More" : "0",
@@ -49,14 +54,17 @@
    "release_status" : "stable",
    "resources" : {
       "bugtracker" : {
-         "web" : "https://github.com/gempesaw/Appium-Perl-Client/issues"
+         "web" : "https://github.com/appium/perl-client/issues"
       },
       "repository" : {
          "type" : "git",
-         "url" : "git://github.com/gempesaw/Appium-Perl-Client.git",
-         "web" : "https://github.com/gempesaw/Appium-Perl-Client"
+         "url" : "git://github.com/appium/perl-client.git",
+         "web" : "https://github.com/appium/perl-client"
       }
    },
-   "version" : "0.02"
+   "version" : "0.03",
+   "x_contributors" : [
+      "Freddy Vega <freddy@vgp-miami.com>"
+   ]
 }
 

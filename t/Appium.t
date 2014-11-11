@@ -5,12 +5,14 @@ use warnings;
 use JSON;
 use Test::More;
 use Cwd qw/abs_path/;
+use Appium::Commands;
 
 BEGIN: {
     my $test_lib = abs_path(__FILE__);
     $test_lib =~ s/(.*)\/.*\.t$/$1\/lib/;
     push @INC, $test_lib;
     require MockAppium;
+    MockAppium->import(qw/endpoint_ok alias_ok/);
 
     unless (use_ok('Appium')) {
         BAIL_OUT("Couldn't load Appium");
@@ -22,7 +24,8 @@ my $mock_appium = MockAppium->new;
 
 CONTEXT: {
     my $context = 'WEBVIEW_1';
-    my (undef, $params) = $mock_appium->switch_to->context( $context );
+    my ($res, $params) = $mock_appium->switch_to->context( $context );
+    alias_ok('switch_to->context', $res);
     cmp_ok($params->{name}, 'eq', $context, 'can switch to a context');
 }
 
@@ -68,6 +71,51 @@ HIDE_KEYBOARD: {
 
         }
     }
+}
+
+ANDROID_KEYCODES: {
+    my $code = 176;
+    endpoint_ok('press_keycode', [ $code ], { keycode => $code });
+    endpoint_ok('long_press_keycode', [ $code, 'metastate' ], { keycode => $code, metastate => 'metastate' });
+
+}
+
+PUSH_PULL: {
+    my $path = '/fake/path';
+    my $data = 'pretend to be base 64 encoded';
+    endpoint_ok('pull_file', [ $path ], { path => $path });
+    endpoint_ok('pull_folder', [ $path ], { path => $path });
+    endpoint_ok('push_file', [ $path, $data ], { path => $path, data => $data });
+}
+
+FIND: {
+    my @selector = qw/fake selection critera/;
+    endpoint_ok('complex_find', [ @selector ], { selector => \@selector });
+}
+
+APP: {
+    endpoint_ok('background_app', [ 5 ], { seconds => 5 });
+    endpoint_ok('is_app_installed', [ 'a fake bundle id' ], { bundleId => 'a fake bundle id' });
+    endpoint_ok('install_app', [ '/fake/path/to.app' ], { appPath => '/fake/path/to.app' });
+    endpoint_ok('remove_app', [ '/fake/path/to.app' ], { appId => '/fake/path/to.app' });
+    endpoint_ok('launch_app');
+    endpoint_ok('close_app');
+}
+
+DEVICE: {
+    endpoint_ok('lock', [ 5 ], { seconds => 5 });
+    endpoint_ok('shake');
+    endpoint_ok('open_notifications');
+    endpoint_ok('network_connection');
+    endpoint_ok('set_network_connection', [ 6 ], { parameters => { type => 6 } });
+}
+
+MISC: {
+    endpoint_ok('end_test_coverage', [ 'intent', 'path' ], {
+        intent => 'intent',
+        path => 'path'
+    });
+
 }
 
 done_testing;

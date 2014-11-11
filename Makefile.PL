@@ -24,18 +24,23 @@ my %WriteMakefileArgs = (
     "Carp" => 0,
     "Moo" => 0,
     "Selenium::Remote::Commands" => 0,
-    "Selenium::Remote::Driver" => 0
+    "Selenium::Remote::Driver" => "0.22",
+    "Selenium::Remote::ErrorHandler" => 0,
+    "Selenium::Remote::RemoteConnection" => 0,
+    "Selenium::Remote::WebElement" => 0,
+    "constant" => 0
   },
   "TEST_REQUIRES" => {
     "Cwd" => 0,
     "JSON" => 0,
+    "Test::Deep" => 0,
     "Test::LWP::UserAgent" => 0,
     "Test::MockObject::Extends" => 0,
     "Test::More" => 0,
     "strict" => 0,
     "warnings" => 0
   },
-  "VERSION" => "0.02",
+  "VERSION" => "0.03",
   "test" => {
     "TESTS" => "t/*.t"
   }
@@ -48,10 +53,15 @@ my %FallbackPrereqs = (
   "JSON" => 0,
   "Moo" => 0,
   "Selenium::Remote::Commands" => 0,
-  "Selenium::Remote::Driver" => 0,
+  "Selenium::Remote::Driver" => "0.22",
+  "Selenium::Remote::ErrorHandler" => 0,
+  "Selenium::Remote::RemoteConnection" => 0,
+  "Selenium::Remote::WebElement" => 0,
+  "Test::Deep" => 0,
   "Test::LWP::UserAgent" => 0,
   "Test::MockObject::Extends" => 0,
   "Test::More" => 0,
+  "constant" => 0,
   "strict" => 0,
   "warnings" => 0
 );
