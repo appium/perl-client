@@ -1,5 +1,5 @@
 package Appium::Element;
-$Appium::Element::VERSION = '0.03';
+$Appium::Element::VERSION = '0.04';
 # ABSTRACT: Representation of an Appium element
 use Moo;
 use Carp qw/croak/;
@@ -73,7 +73,7 @@ Appium::Element - Representation of an Appium element
 
 =head1 VERSION
 
-version 0.03
+version 0.04
 
 =head1 METHODS
 

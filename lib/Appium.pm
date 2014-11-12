@@ -1,5 +1,5 @@
 package Appium;
-$Appium::VERSION = '0.03';
+$Appium::VERSION = '0.04';
 # ABSTRACT: Perl bindings to the Appium mobile automation framework (WIP)
 use Moo;
 use Carp qw/croak/;
@@ -30,24 +30,34 @@ use constant FINDERS => {
 
 has '+desired_capabilities' => (
     is => 'rw',
-    required => 1,
-    init_arg => 'caps',
+    required => 0,
+    predicate => 'has_desired',
     coerce => sub {
         my $caps = shift;
-        croak 'Desired capabilities must include: app' unless exists $caps->{app};
+        croak 'Desired capabilities must include: app'
+          unless exists $caps->{app};
 
-        my $defaults = {
-            browserName => '',
-            deviceName => 'iPhone Simulator',
-            platformName => 'iOS',
-            platformVersion => '7.1'
-        };
+        return $caps;
+    },
+    builder => sub {
+        my ($self) = @_;
+        croak 'You must provide desired capabilities to the \'caps\' keyword in your constructor.'
+          unless $self->has_desired or $self->has_caps;
 
-        foreach (keys %$defaults) {
-            unless (exists $caps->{$_}) {
-                $caps->{$_} = $defaults->{$_};
-            }
+        if ($self->has_caps) {
+            $self->desired_capabilities($self->caps);
         }
+    }
+);
+
+has 'caps' => (
+    is => 'ro',
+    required => 0,
+    predicate => 'has_caps',
+    coerce => sub {
+        my $caps = shift;
+        croak 'Desired capabilities must include: app'
+          unless exists $caps->{app};
 
         return $caps;
     }
@@ -57,14 +67,13 @@ has '_type' => (
     is => 'rw',
     lazy => 1,
     coerce => sub {
-        my $device = shift;
+        my $device = shift || 'iOS';
 
         croak 'platformName must be Android or iOS'
           unless grep { $_ eq $device } qw/Android iOS/;
 
         return $device;
-    },
-    default => sub { 'iOS' }
+    }
 );
 
 has '+port' => (
@@ -96,6 +105,9 @@ has 'webelement_class' => (
 
 sub BUILD {
     my ($self) = @_;
+
+    croak 'Use either \'caps\' or \'desired_capabilities\' in your constructor, but not both.'
+      if $self->has_desired and $self->has_caps;
 
     $self->_type($self->desired_capabilities->{platformName});
 }
@@ -401,7 +413,7 @@ Appium - Perl bindings to the Appium mobile automation framework (WIP)
 
 =head1 VERSION
 
-version 0.03
+version 0.04
 
 =head1 SYNOPSIS
 

@@ -1,5 +1,9 @@
 Revision history for perl module Appium
 
+0.04 2014-11-12
+- Loosen restrictions about caps vs desired_capabilities in
+  constructor
+
 0.03 2014-11-11
  - Use hard dependency on S-R-D v0.22 to allow us to use our own
    Finders constant and ErrorHandler class.
