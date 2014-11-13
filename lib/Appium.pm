@@ -108,34 +108,24 @@ use constant FINDERS => {
 
 has '+desired_capabilities' => (
     is => 'rw',
-    required => 0,
-    predicate => 'has_desired',
+    required => 1,
+    init_arg => 'caps',
     coerce => sub {
         my $caps = shift;
-        croak 'Desired capabilities must include: app'
-          unless exists $caps->{app};
+        croak 'Desired capabilities must include: app' unless exists $caps->{app};
 
-        return $caps;
-    },
-    builder => sub {
-        my ($self) = @_;
-        croak 'You must provide desired capabilities to the \'caps\' keyword in your constructor.'
-          unless $self->has_desired or $self->has_caps;
+        my $defaults = {
+            browserName => '',
+            deviceName => 'iPhone Simulator',
+            platformName => 'iOS',
+            platformVersion => '7.1'
+        };
 
-        if ($self->has_caps) {
-            $self->desired_capabilities($self->caps);
+        foreach (keys %$defaults) {
+            unless (exists $caps->{$_}) {
+                $caps->{$_} = $defaults->{$_};
+            }
         }
-    }
-);
-
-has 'caps' => (
-    is => 'ro',
-    required => 0,
-    predicate => 'has_caps',
-    coerce => sub {
-        my $caps = shift;
-        croak 'Desired capabilities must include: app'
-          unless exists $caps->{app};
 
         return $caps;
     }
@@ -183,9 +173,6 @@ has 'webelement_class' => (
 
 sub BUILD {
     my ($self) = @_;
-
-    croak 'Use either \'caps\' or \'desired_capabilities\' in your constructor, but not both.'
-      if $self->has_desired and $self->has_caps;
 
     $self->_type($self->desired_capabilities->{platformName});
 }
