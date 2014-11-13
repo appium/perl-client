@@ -34,14 +34,13 @@ my %WriteMakefileArgs = (
     "Cwd" => 0,
     "JSON" => 0,
     "Test::Deep" => 0,
-    "Test::Exception" => 0,
     "Test::LWP::UserAgent" => 0,
     "Test::MockObject::Extends" => 0,
     "Test::More" => 0,
     "strict" => 0,
     "warnings" => 0
   },
-  "VERSION" => "0.04",
+  "VERSION" => "0.05",
   "test" => {
     "TESTS" => "t/*.t"
   }
@@ -59,7 +58,6 @@ my %FallbackPrereqs = (
   "Selenium::Remote::RemoteConnection" => 0,
   "Selenium::Remote::WebElement" => 0,
   "Test::Deep" => 0,
-  "Test::Exception" => 0,
   "Test::LWP::UserAgent" => 0,
   "Test::MockObject::Extends" => 0,
   "Test::More" => 0,

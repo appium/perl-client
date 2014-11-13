@@ -16,7 +16,6 @@ my $mock_appium;
 my @aliases = keys %{ Appium::Commands->new->get_cmds };
 
 sub new {
-    my ($self, %args) = @_;
     my $tua = Test::LWP::UserAgent->new;
     my $fake_session_response = {
         cmd_return => {},
@@ -27,16 +26,10 @@ sub new {
     $tua->map_response(qr{status}, HTTP::Response->new(200, 'OK'));
     $tua->map_response(qr{session}, HTTP::Response->new(204, 'OK', ['Content-Type' => 'application/json'], to_json($fake_session_response)));
 
-    my $init_args = {ua => $tua};
-    if (%args) {
-        foreach (keys %args) {
-            $init_args->{$_} = $args{$_};
-        }
-    }
-    else {
-        $init_args->{caps} = { app => 'fake' };
-    }
-    my $appium = Appium->new($init_args);
+    my $appium = Appium->new(
+        caps => { app => 'fake' },
+        ua => $tua
+    );
 
     $mock_appium = Test::MockObject::Extends->new($appium);
 

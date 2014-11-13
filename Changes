@@ -1,7 +1,10 @@
 Revision history for perl module Appium
 
+0.05 2014-11-13
+ - Restore restrictions about caps vs desired; this is just 0.03 again.
+
 0.04 2014-11-12
-- Loosen restrictions about caps vs desired_capabilities in
+ - Loosen restrictions about caps vs desired_capabilities in
   constructor
 
 0.03 2014-11-11

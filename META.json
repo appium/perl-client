@@ -43,7 +43,6 @@
             "Cwd" : "0",
             "JSON" : "0",
             "Test::Deep" : "0",
-            "Test::Exception" : "0",
             "Test::LWP::UserAgent" : "0",
             "Test::MockObject::Extends" : "0",
             "Test::More" : "0",
@@ -63,7 +62,7 @@
          "web" : "https://github.com/appium/perl-client"
       }
    },
-   "version" : "0.04",
+   "version" : "0.05",
    "x_contributors" : [
       "Freddy Vega <freddy@vgp-miami.com>"
    ]

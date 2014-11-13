@@ -1,5 +1,5 @@
 package Appium;
-$Appium::VERSION = '0.04';
+$Appium::VERSION = '0.05';
 # ABSTRACT: Perl bindings to the Appium mobile automation framework (WIP)
 use Moo;
 use Carp qw/croak/;
@@ -30,34 +30,11 @@ use constant FINDERS => {
 
 has '+desired_capabilities' => (
     is => 'rw',
-    required => 0,
-    predicate => 'has_desired',
+    required => 1,
+    init_arg => 'caps',
     coerce => sub {
         my $caps = shift;
-        croak 'Desired capabilities must include: app'
-          unless exists $caps->{app};
-
-        return $caps;
-    },
-    builder => sub {
-        my ($self) = @_;
-        croak 'You must provide desired capabilities to the \'caps\' keyword in your constructor.'
-          unless $self->has_desired or $self->has_caps;
-
-        if ($self->has_caps) {
-            $self->desired_capabilities($self->caps);
-        }
-    }
-);
-
-has 'caps' => (
-    is => 'ro',
-    required => 0,
-    predicate => 'has_caps',
-    coerce => sub {
-        my $caps = shift;
-        croak 'Desired capabilities must include: app'
-          unless exists $caps->{app};
+        croak 'Desired capabilities must include: app' unless exists $caps->{app};
 
         return $caps;
     }
@@ -105,9 +82,6 @@ has 'webelement_class' => (
 
 sub BUILD {
     my ($self) = @_;
-
-    croak 'Use either \'caps\' or \'desired_capabilities\' in your constructor, but not both.'
-      if $self->has_desired and $self->has_caps;
 
     $self->_type($self->desired_capabilities->{platformName});
 }
@@ -413,7 +387,7 @@ Appium - Perl bindings to the Appium mobile automation framework (WIP)
 
 =head1 VERSION
 
-version 0.04
+version 0.05
 
 =head1 SYNOPSIS
 

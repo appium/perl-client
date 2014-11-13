@@ -4,7 +4,6 @@ use strict;
 use warnings;
 use JSON;
 use Test::More;
-use Test::Exception;
 use Cwd qw/abs_path/;
 use Appium::Commands;
 
@@ -22,26 +21,6 @@ BEGIN: {
 }
 
 my $mock_appium = MockAppium->new;
-
-CAPS: {
-    my $fake_caps = { app => 'fake' };
-    my $caps_key = MockAppium->new(caps => $fake_caps);
-    ok($caps_key, 'caps is a valid key for instantiation');
-
-    my $desired_key = MockAppium->new(desired_capabilities => $fake_caps);
-    ok($desired_key, 'desired is a valid key for instantiation');
-
-    throws_ok(sub { MockAppium->new(bad_key => $fake_caps) },
-              qr/'caps' keyword/,
-              'at least one of desired_capabilities or caps is required for instantiation');
-
-    throws_ok(sub { MockAppium->new(
-        desired_capabilities => $fake_caps,
-        caps                 => $fake_caps
-    ) },
-              qr/but not both/,
-              'we won\'t accept both of them, either');
-}
 
 CONTEXT: {
     my $context = 'WEBVIEW_1';
