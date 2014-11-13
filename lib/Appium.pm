@@ -114,19 +114,6 @@ has '+desired_capabilities' => (
         my $caps = shift;
         croak 'Desired capabilities must include: app' unless exists $caps->{app};
 
-        my $defaults = {
-            browserName => '',
-            deviceName => 'iPhone Simulator',
-            platformName => 'iOS',
-            platformVersion => '7.1'
-        };
-
-        foreach (keys %$defaults) {
-            unless (exists $caps->{$_}) {
-                $caps->{$_} = $defaults->{$_};
-            }
-        }
-
         return $caps;
     }
 );
