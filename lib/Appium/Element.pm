@@ -26,6 +26,7 @@ that you can use on Appium elements.
 =cut
 
 has '+driver' => (
+    is => 'ro',
     handles => [ qw/is_android is_ios/ ]
 );
 

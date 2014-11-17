@@ -112,7 +112,8 @@ has '+desired_capabilities' => (
     init_arg => 'caps',
     coerce => sub {
         my $caps = shift;
-        croak 'Desired capabilities must include: app' unless exists $caps->{app};
+        croak 'Desired capabilities must include: app'
+          unless exists $caps->{app};
 
         return $caps;
     }
@@ -132,7 +133,7 @@ has '_type' => (
 );
 
 has '+port' => (
-    is => 'rw',
+    is => 'ro',
     default => sub { 4723 }
 );
 
@@ -142,6 +143,8 @@ has '+commands' => (
 );
 
 has '+remote_conn' => (
+    is => 'ro',
+    lazy => 1,
     builder => sub {
         my $self = shift;
         return Selenium::Remote::RemoteConnection->new(
