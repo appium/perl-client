@@ -2,6 +2,7 @@ package Appium::Element;
 
 # ABSTRACT: Representation of an Appium element
 use Moo;
+use MooX::Aliases;
 use Carp qw/croak/;
 extends 'Selenium::Remote::WebElement';
 
@@ -27,6 +28,14 @@ that you can use on Appium elements.
 has '+driver' => (
     handles => [ qw/is_android is_ios/ ]
 );
+
+=method tap
+
+Tap on the element - an alias for S::R::WebElement's 'click'
+
+=cut
+
+alias tap => 'click';
 
 =method set_value ( $value )
 
