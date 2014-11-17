@@ -111,7 +111,7 @@ use constant FINDERS => {
 has '+desired_capabilities' => (
     is => 'rw',
     required => 1,
-    init_arg => 'caps',
+    alias => 'caps',
     coerce => sub {
         my $caps = shift;
         croak 'Desired capabilities must include: app'
