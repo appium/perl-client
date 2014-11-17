@@ -80,6 +80,7 @@ ELEMENT_COMMANDS: {
     );
 
     my @element_implemented = qw/
+                                    tap
                                     set_value
                                 /;
     foreach my $command (@element_implemented) {
@@ -92,9 +93,11 @@ ELEMENT_COMMANDS: {
 
 # There are 70 commands that we inherit from S::R::Commands. We add
 # our own, and then delete them one by one in each foreach loop
-# above. By the time we get here, there should only be the original 70
-# left.
-my $SRD_COMMANDS = 70;
+# above. A few are aliased to more expressive commands ( tap vs click,
+# for example) and will subtract from the total.By the time we get
+# here, there should only be the original 70 left, minus however many
+# aliases are set.
+my $SRD_COMMANDS = 69;
 cmp_ok( scalar keys %{ $cmds }, '==', $SRD_COMMANDS, 'All Appium Commands are implemented!');
 
 done_testing;
