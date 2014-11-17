@@ -36,6 +36,7 @@ my @implemented = qw/
                         is_app_installed
                         launch_app
                         lock
+                        is_locked
                         network_connection
                         open_notifications
                         press_keycode

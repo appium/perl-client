@@ -104,6 +104,7 @@ APP: {
 
 DEVICE: {
     endpoint_ok('lock', [ 5 ], { seconds => 5 });
+    endpoint_ok('is_locked');
     endpoint_ok('shake');
     endpoint_ok('open_notifications');
     endpoint_ok('network_connection');

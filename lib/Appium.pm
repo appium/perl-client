@@ -576,6 +576,21 @@ sub lock {
     return $self->_execute_command( $res, $params );
 }
 
+=method is_locked
+
+Query the device for its locked/unlocked state.
+
+    $locked = $appium->is_locked
+
+=cut
+
+sub is_locked {
+    my($self) = @_;
+
+    my $res = { command => 'is_locked' };
+    return $self->_execute_command( $res );
+}
+
 =method shake ()
 
 Shake the device.

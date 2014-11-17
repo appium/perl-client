@@ -129,6 +129,11 @@ has 'get_cmds' => (
                 url => 'session/:sessionId/appium/device/lock',
                 no_content_success => 1
             },
+            is_locked => {
+                method => 'POST',
+                url => 'session/:sessionId/appium/device/is_locked',
+                no_content_success => 0
+            },
             shake => {
                 method => 'POST',
                 url => 'session/:sessionId/appium/device/shake',

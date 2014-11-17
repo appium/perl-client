@@ -237,6 +237,12 @@ Lock the device for a specified number of seconds.
 
     $appium->lock( 5 ); # lock for 5 seconds
 
+## is\_locked
+
+Query the device for its locked/unlocked state.
+
+    $locked = $appium->is_locked
+
 ## shake ()
 
 Shake the device.
