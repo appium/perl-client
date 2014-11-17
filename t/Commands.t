@@ -80,7 +80,6 @@ ELEMENT_COMMANDS: {
     );
 
     my @element_implemented = qw/
-                                    set_text
                                     set_value
                                 /;
     foreach my $command (@element_implemented) {
