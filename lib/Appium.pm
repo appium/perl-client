@@ -679,8 +679,9 @@ sub is_ios {
 
 =head1 SEE ALSO
 
-http://appium.io
+Appium::Element
 Selenium::Remote::Driver
+http://appium.io
 
 =cut
 
