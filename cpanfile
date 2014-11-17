@@ -1,5 +1,6 @@
 requires "Carp" => "0";
 requires "Moo" => "0";
+requires "MooX::Aliases" => "0";
 requires "Selenium::Remote::Commands" => "0";
 requires "Selenium::Remote::Driver" => "0.22";
 requires "Selenium::Remote::ErrorHandler" => "0";

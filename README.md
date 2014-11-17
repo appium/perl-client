@@ -283,8 +283,9 @@ following bitmask:
 
 Please see those modules/websites for more information related to this module.
 
-- [http://appium.io](http://appium.io)
+- [Appium::Element](https://metacpan.org/pod/Appium::Element)
 - [Selenium::Remote::Driver](https://metacpan.org/pod/Selenium::Remote::Driver)
+- [http://appium.io](http://appium.io)
 
 # BUGS
 
