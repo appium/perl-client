@@ -132,6 +132,11 @@ has '_type' => (
     }
 );
 
+has '+remote_server_addr' => (
+    is => 'ro',
+    default => sub { 'localhost' }
+);
+
 has '+port' => (
     is => 'ro',
     default => sub { 4723 }
