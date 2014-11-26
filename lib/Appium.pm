@@ -9,7 +9,7 @@ use Appium::Element;
 use Appium::ErrorHandler;
 use Appium::SwitchTo;
 
-use Selenium::Remote::Driver 0.22;
+use Selenium::Remote::Driver 0.2202;
 use Selenium::Remote::RemoteConnection;
 extends 'Selenium::Remote::Driver';
 
