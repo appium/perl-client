@@ -1,5 +1,5 @@
 package Appium;
-$Appium::VERSION = '0.05';
+$Appium::VERSION = '0.06';
 # ABSTRACT: Perl bindings to the Appium mobile automation framework (WIP)
 use Moo;
 use Carp qw/croak/;
@@ -9,7 +9,7 @@ use Appium::Element;
 use Appium::ErrorHandler;
 use Appium::SwitchTo;
 
-use Selenium::Remote::Driver 0.22;
+use Selenium::Remote::Driver 0.2202;
 use Selenium::Remote::RemoteConnection;
 extends 'Selenium::Remote::Driver';
 
@@ -34,7 +34,8 @@ has '+desired_capabilities' => (
     init_arg => 'caps',
     coerce => sub {
         my $caps = shift;
-        croak 'Desired capabilities must include: app' unless exists $caps->{app};
+        croak 'Desired capabilities must include: app'
+          unless exists $caps->{app};
 
         return $caps;
     }
@@ -53,8 +54,13 @@ has '_type' => (
     }
 );
 
+has '+remote_server_addr' => (
+    is => 'ro',
+    default => sub { 'localhost' }
+);
+
 has '+port' => (
-    is => 'rw',
+    is => 'ro',
     default => sub { 4723 }
 );
 
@@ -64,6 +70,8 @@ has '+commands' => (
 );
 
 has '+remote_conn' => (
+    is => 'ro',
+    lazy => 1,
     builder => sub {
         my $self = shift;
         return Selenium::Remote::RemoteConnection->new(
@@ -325,6 +333,14 @@ sub lock {
 }
 
 
+sub is_locked {
+    my($self) = @_;
+
+    my $res = { command => 'is_locked' };
+    return $self->_execute_command( $res );
+}
+
+
 sub shake {
     my ($self) = @_;
 
@@ -387,7 +403,7 @@ Appium - Perl bindings to the Appium mobile automation framework (WIP)
 
 =head1 VERSION
 
-version 0.05
+version 0.06
 
 =head1 SYNOPSIS
 
@@ -618,6 +634,12 @@ Lock the device for a specified number of seconds.
 
     $appium->lock( 5 ); # lock for 5 seconds
 
+=head2 is_locked
+
+Query the device for its locked/unlocked state.
+
+    $locked = $appium->is_locked
+
 =head2 shake ()
 
 Shake the device.
@@ -662,11 +684,15 @@ Please see those modules/websites for more information related to this module.
 
 =item *
 
-L<http://appium.io|http://appium.io>
+L<Appium::Element|Appium::Element>
 
 =item *
 
 L<Selenium::Remote::Driver|Selenium::Remote::Driver>
+
+=item *
+
+L<http://appium.io|http://appium.io>
 
 =back
 

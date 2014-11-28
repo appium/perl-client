@@ -30,8 +30,9 @@
          "requires" : {
             "Carp" : "0",
             "Moo" : "0",
+            "MooX::Aliases" : "0",
             "Selenium::Remote::Commands" : "0",
-            "Selenium::Remote::Driver" : "0.22",
+            "Selenium::Remote::Driver" : "0.2202",
             "Selenium::Remote::ErrorHandler" : "0",
             "Selenium::Remote::RemoteConnection" : "0",
             "Selenium::Remote::WebElement" : "0",
@@ -43,6 +44,7 @@
             "Cwd" : "0",
             "JSON" : "0",
             "Test::Deep" : "0",
+            "Test::Exception" : "0",
             "Test::LWP::UserAgent" : "0",
             "Test::MockObject::Extends" : "0",
             "Test::More" : "0",
@@ -62,7 +64,7 @@
          "web" : "https://github.com/appium/perl-client"
       }
    },
-   "version" : "0.05",
+   "version" : "0.06",
    "x_contributors" : [
       "Freddy Vega <freddy@vgp-miami.com>"
    ]

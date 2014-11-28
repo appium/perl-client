@@ -1,49 +1,19 @@
 package Appium::Element;
-$Appium::Element::VERSION = '0.05';
+$Appium::Element::VERSION = '0.06';
 # ABSTRACT: Representation of an Appium element
 use Moo;
+use MooX::Aliases;
 use Carp qw/croak/;
 extends 'Selenium::Remote::WebElement';
 
+
 has '+driver' => (
+    is => 'ro',
     handles => [ qw/is_android is_ios/ ]
 );
 
 
-sub set_text {
-    my ($self, @keys) = @_;
-    croak "set_text requires text to set" unless scalar @keys >= 1;
-
-    if ($self->is_android) {
-        $self->set_text_android(@keys);
-    }
-    elsif ($self->is_ios) {
-        return $self->set_text_ios(@keys);
-    }
-}
-
-sub set_text_android {
-    my ($self, @keys) = @_;
-
-    my $res = {
-        id => $self->id,
-        command => 'set_text'
-    };
-
-    my $params = {
-        value => \@keys
-    };
-
-    return $self->_execute_command($res, $params);
-}
-
-sub set_text_ios {
-    my ($self, @keys) = @_;
-    croak "set_text_ios requires text to set" unless scalar @keys >= 1;
-
-    my $keys = join('', @keys);
-    return $self->driver->execute_script('au.getElement("' . $self->id . '").setValue("' . $keys . '");');
-}
+alias tap => 'click';
 
 
 sub set_value {
@@ -59,6 +29,7 @@ sub set_value {
     return $self->_execute_command( $res, $params );
 }
 
+
 1;
 
 __END__
@@ -73,16 +44,30 @@ Appium::Element - Representation of an Appium element
 
 =head1 VERSION
 
-version 0.05
+version 0.06
+
+=head1 SYNOPSIS
+
+    my $appium = Appium->new(caps => {
+        app => '/url/or/path/to/mobile/app.zip'
+    });
+    my $appium_element = $appium->find_element('locator', 'id');
+    $appium_element->click;
+    $appium_element->set_value('example', 'values');
+
+=head1 DESCRIPTION
+
+L<Appium::Element>s are the elements in your app with which you can
+interact - you can send them taps, clicks, text for inputs, and query
+them as to their state - whether they're displayed, or enabled,
+etc. See L<Selenium::Remote::WebElement> for the full list of subs
+that you can use on Appium elements.
 
 =head1 METHODS
 
-=head2 set_text ( $text )
+=head2 tap
 
-Set the value of an element, replacing any already existing text. Use
-this method for overwriting Android hint text in textfields.
-
-    $elem->set_text( 'clear existing text' );
+Tap on the element - an alias for S::R::WebElement's 'click'
 
 =head2 set_value ( $value )
 
@@ -99,6 +84,14 @@ Please see those modules/websites for more information related to this module.
 =item *
 
 L<Appium|Appium>
+
+=item *
+
+L<Appium|Appium>
+
+=item *
+
+L<Selenium::Remote::WebElement|Selenium::Remote::WebElement>
 
 =back
 

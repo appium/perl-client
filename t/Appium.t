@@ -4,6 +4,7 @@ use strict;
 use warnings;
 use JSON;
 use Test::More;
+use Test::Exception;
 use Cwd qw/abs_path/;
 use Appium::Commands;
 
@@ -21,6 +22,13 @@ BEGIN: {
 }
 
 my $mock_appium = MockAppium->new;
+
+INVALID_STRATEGY: {
+    throws_ok( sub { $mock_appium->find_element('a locator', 'invalid strategy'); },
+               qr/android/,
+               'Appium should tell us about the right finder strategies'
+           );
+}
 
 CONTEXT: {
     my $context = 'WEBVIEW_1';
@@ -104,6 +112,7 @@ APP: {
 
 DEVICE: {
     endpoint_ok('lock', [ 5 ], { seconds => 5 });
+    endpoint_ok('is_locked');
     endpoint_ok('shake');
     endpoint_ok('open_notifications');
     endpoint_ok('network_connection');

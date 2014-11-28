@@ -1,5 +1,5 @@
 package Appium::Commands;
-$Appium::Commands::VERSION = '0.05';
+$Appium::Commands::VERSION = '0.06';
 # ABSTRACT: Appium specific extensions to the Webdriver JSON protocol
 use Moo;
 extends 'Selenium::Remote::Commands';
@@ -122,6 +122,11 @@ has 'get_cmds' => (
                 url => 'session/:sessionId/appium/device/lock',
                 no_content_success => 1
             },
+            is_locked => {
+                method => 'POST',
+                url => 'session/:sessionId/appium/device/is_locked',
+                no_content_success => 0
+            },
             shake => {
                 method => 'POST',
                 url => 'session/:sessionId/appium/device/shake',
@@ -177,11 +182,6 @@ has 'get_cmds' => (
             #         url => 'session/:sessionId/ime/active_engine',
             #         no_content_success => 0
             #     }
-            set_text => {
-                method => 'POST',
-                url => 'session/:sessionId/appium/element/:element/replace_value',
-                no_content_success => 1
-            }
         };
 
         foreach (keys %$appium_commands) {
@@ -207,7 +207,7 @@ Appium::Commands - Appium specific extensions to the Webdriver JSON protocol
 
 =head1 VERSION
 
-version 0.05
+version 0.06
 
 =head1 DESCRIPTION
 

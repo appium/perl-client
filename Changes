@@ -1,5 +1,8 @@
 Revision history for perl module Appium
 
+0.06 2014-11-27
+ - Fix error message for invalid finder strategies via dep upgrade
+
 0.05 2014-11-13
  - Restore restrictions about caps vs desired; this is just 0.03 again.
 
