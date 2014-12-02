@@ -47,7 +47,7 @@ has 'get_cmds' => (
             app_strings => {
                 method => 'POST',
                 url => 'session/:sessionId/appium/app/strings',
-                no_content_success => 1
+                no_content_success => 0
             },
             press_keycode => {
                 method => 'POST',
