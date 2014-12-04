@@ -6,7 +6,7 @@ Appium - Perl bindings to the Appium mobile automation framework (WIP)
 
 # VERSION
 
-version 0.06
+version 0.07
 
 # SYNOPSIS
 
@@ -278,6 +278,13 @@ following bitmask:
     # 6 (All network on) | 1    | 1    | 0
 
     $appium->set_network_connection(6);
+
+## tap ( $x, $y )
+
+Perform a precise tap. See ["tap" in Appium::TouchActions](https://metacpan.org/pod/Appium::TouchActions#tap) for more
+information.
+
+    $appium->tap( 0.5, 0.5 );
 
 # SEE ALSO
 

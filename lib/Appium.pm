@@ -161,6 +161,15 @@ has '+remote_conn' => (
     }
 );
 
+has 'touch_actions' => (
+    is => 'ro',
+    lazy => 1,
+    init_arg => undef,
+    handles => [ qw/tap/ ],
+    default => sub { Appium::TouchActions->new( driver => shift ); }
+);
+
+
 has 'webelement_class' => (
     is => 'rw',
     default => sub { 'Appium::Element' }
@@ -676,6 +685,15 @@ sub set_network_connection {
 
     return $self->_execute_command( $res, $params );
 }
+
+=method tap ( $x, $y )
+
+Perform a precise tap. See L<Appium::TouchActions/tap> for more
+information.
+
+    $appium->tap( 0.5, 0.5 );
+
+=cut
 
 sub is_android {
     return shift->_type eq 'Android'
