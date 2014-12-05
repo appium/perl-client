@@ -1,8 +1,9 @@
 package Appium;
-$Appium::VERSION = '0.06';
+$Appium::VERSION = '0.07';
 # ABSTRACT: Perl bindings to the Appium mobile automation framework (WIP)
-use Moo;
 use Carp qw/croak/;
+use feature qw/state/;
+use Moo;
 
 use Appium::Commands;
 use Appium::Element;
@@ -82,6 +83,15 @@ has '+remote_conn' => (
         );
     }
 );
+
+has 'touch_actions' => (
+    is => 'ro',
+    lazy => 1,
+    init_arg => undef,
+    handles => [ qw/tap/ ],
+    default => sub { Appium::TouchActions->new( driver => shift ); }
+);
+
 
 has 'webelement_class' => (
     is => 'rw',
@@ -378,6 +388,66 @@ sub set_network_connection {
     return $self->_execute_command( $res, $params );
 }
 
+
+
+sub page {
+    my ($self) = @_;
+
+    $self->_get_page;
+}
+
+sub _get_page {
+    my ($self, $element, $level) = @_;
+    return 'TODO: implement page on android' if $self->is_android;
+
+    $element //= $self->_source_window_with_children;
+    $level //= 0;
+    my $indent = '  ' x $level;
+
+    # App strings are found in an actual file in the app package
+    # somewhere, so I'm assuming we don't have to worry about them
+    # changing in the middle of our app execution. This may very well
+    # turn out to be a false assumption.
+    state $strings = $self->app_strings;
+
+    my @details = qw/name label value hint/;
+    if ($element->{visible}) {
+        print $indent .  $element->{type} . "\n";
+        foreach (@details) {
+            my $detail = $element->{$_};
+            if ($detail) {
+                print $indent .  '  ' . $_ . "\t: " . $detail  . "\n" ;
+
+                foreach my $key (keys %{ $strings }) {
+                    my $val = $strings->{$key};
+                    if ($val =~ /$detail/) {
+                        print $indent .  '  id  ' . "\t: " . $key . ' => ' . $val . "\n";
+                    }
+                }
+            }
+        }
+    }
+
+    $level++;
+    my @children = @{ $element->{children} };
+    foreach (@children) {
+        $self->_get_page($_, $level);
+    }
+}
+
+sub _source_window_with_children {
+    my ($self, $index) = @_;
+    $index //= 0;
+
+    my $window = $self->execute_script('UIATarget.localTarget().frontMostApp().windows()[' . $index . '].getTree()');
+    if (scalar @{ $window->{children} }) {
+        return $window;
+    }
+    else {
+        return $self->_source_window_with_children(++$index);
+    }
+}
+
 sub is_android {
     return shift->_type eq 'Android'
 }
@@ -403,7 +473,7 @@ Appium - Perl bindings to the Appium mobile automation framework (WIP)
 
 =head1 VERSION
 
-version 0.06
+version 0.07
 
 =head1 SYNOPSIS
 
@@ -411,7 +481,8 @@ version 0.06
         app => '/url/or/path/to/mobile/app.zip'
     });
 
-    $appium->hide_keyboard;
+    $appium->page;
+    $appium->find_element('TextField1', 'name')->send_keys('5');
     $appium->quit;
 
 =head1 DESCRIPTION
@@ -422,11 +493,9 @@ WebDriver JSON wire protocol. This module is a thin extension of
 L<Selenium::Remote::Driver> that adds Appium specific API endpoints
 and Appium-specific constructor defaults. It's woefully incomplete at
 the moment, so feel free to pitch in at the L<Github
-repo|https://github.com/appium/perl-client>!
-
-For details on how Appium extends the Webdriver spec, see the Selenium
-project's L<spec-draft
-document|https://code.google.com/p/selenium/source/browse/spec-draft.md?repo=mobile>
+repo|https://github.com/appium/perl-client>! For details on how Appium
+extends the Webdriver spec, see the Selenium project's L<spec-draft
+document|https://code.google.com/p/selenium/source/browse/spec-draft.md?repo=mobile>.
 
 Note that like L<Selenium::Remote::Driver>, you shouldn't have to
 instantiate L<Appium::Element> on your own; this module will create
@@ -441,7 +510,7 @@ appropriate on an element vs the driver.
 
 =head1 NEW OR UPDATED FUNCTIONALITY
 
-=head3 Contexts
+=head2 Contexts
 
 Instead of using windows to manage switching between native
 applications and webviews, use the analogous context methods:
@@ -452,7 +521,7 @@ applications and webviews, use the analogous context methods:
     my $context = 'WEBVIEW_1'
     $appium->switch_to->context( $context );
 
-=head3 Finding Elements
+=head2 Finding Elements
 
 There are different strategies available for finding elements in
 Appium. The options for strategies are:
@@ -675,6 +744,39 @@ following bitmask:
     # 6 (All network on) | 1    | 1    | 0
 
     $appium->set_network_connection(6);
+
+=head2 tap ( $x, $y )
+
+Perform a precise tap. See L<Appium::TouchActions/tap> for more
+information.
+
+    $appium->tap( 0.5, 0.5 );
+
+=head2 page
+
+A shadow of L<arc|https://github.com/appium/ruby_console>'s page
+command, this will print to STDOUT a list of all the visible elements
+on the page along with whatever details are available (name, label,
+value, etc). It's currently only compatible with iOS, and it doesn't
+take filtering arguments like arc's version of page does.
+
+    $appium->page;
+    # UIAWindow
+    #   UIATextField
+    #     name          : IntegerA
+    #     label         : TextField1
+    #     value         : 5
+    #     UIATextField
+    #       name        : TextField1
+    #       label       : TextField1
+    #       value       : 5
+    #   UIATextField
+    #     name          : IntegerB
+    #     label         : TextField2
+    #     UIATextField
+    #       name        : TextField2
+    #       label       : TextField2
+    # ...
 
 =head1 SEE ALSO
 

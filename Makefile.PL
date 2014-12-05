@@ -29,10 +29,15 @@ my %WriteMakefileArgs = (
     "Selenium::Remote::ErrorHandler" => 0,
     "Selenium::Remote::RemoteConnection" => 0,
     "Selenium::Remote::WebElement" => 0,
-    "constant" => 0
+    "constant" => 0,
+    "feature" => 0
   },
   "TEST_REQUIRES" => {
+    "Capture::Tiny" => 0,
     "Cwd" => 0,
+    "File::Basename" => 0,
+    "FileHandle" => 0,
+    "IO::Socket::INET" => 0,
     "JSON" => 0,
     "Test::Deep" => 0,
     "Test::Exception" => 0,
@@ -42,7 +47,7 @@ my %WriteMakefileArgs = (
     "strict" => 0,
     "warnings" => 0
   },
-  "VERSION" => "0.06",
+  "VERSION" => "0.07",
   "test" => {
     "TESTS" => "t/*.t"
   }
@@ -50,8 +55,12 @@ my %WriteMakefileArgs = (
 
 
 my %FallbackPrereqs = (
+  "Capture::Tiny" => 0,
   "Carp" => 0,
   "Cwd" => 0,
+  "File::Basename" => 0,
+  "FileHandle" => 0,
+  "IO::Socket::INET" => 0,
   "JSON" => 0,
   "Moo" => 0,
   "MooX::Aliases" => 0,
@@ -66,6 +75,7 @@ my %FallbackPrereqs = (
   "Test::MockObject::Extends" => 0,
   "Test::More" => 0,
   "constant" => 0,
+  "feature" => 0,
   "strict" => 0,
   "warnings" => 0
 );

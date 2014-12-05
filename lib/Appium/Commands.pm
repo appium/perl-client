@@ -1,5 +1,5 @@
 package Appium::Commands;
-$Appium::Commands::VERSION = '0.06';
+$Appium::Commands::VERSION = '0.07';
 # ABSTRACT: Appium specific extensions to the Webdriver JSON protocol
 use Moo;
 extends 'Selenium::Remote::Commands';
@@ -40,7 +40,7 @@ has 'get_cmds' => (
             app_strings => {
                 method => 'POST',
                 url => 'session/:sessionId/appium/app/strings',
-                no_content_success => 1
+                no_content_success => 0
             },
             press_keycode => {
                 method => 'POST',
@@ -207,7 +207,7 @@ Appium::Commands - Appium specific extensions to the Webdriver JSON protocol
 
 =head1 VERSION
 
-version 0.06
+version 0.07
 
 =head1 DESCRIPTION
 
