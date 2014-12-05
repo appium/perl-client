@@ -14,7 +14,8 @@ version 0.07
         app => '/url/or/path/to/mobile/app.zip'
     });
 
-    $appium->hide_keyboard;
+    $appium->page;
+    $appium->find_element('TextField1', 'name')->send_keys('5');
     $appium->quit;
 
 # DESCRIPTION
@@ -25,11 +26,9 @@ WebDriver JSON wire protocol. This module is a thin extension of
 [Selenium::Remote::Driver](https://metacpan.org/pod/Selenium::Remote::Driver) that adds Appium specific API endpoints
 and Appium-specific constructor defaults. It's woefully incomplete at
 the moment, so feel free to pitch in at the [Github
-repo](https://github.com/appium/perl-client)!
-
-For details on how Appium extends the Webdriver spec, see the Selenium
-project's [spec-draft
-document](https://code.google.com/p/selenium/source/browse/spec-draft.md?repo=mobile)
+repo](https://github.com/appium/perl-client)! For details on how Appium
+extends the Webdriver spec, see the Selenium project's [spec-draft
+document](https://code.google.com/p/selenium/source/browse/spec-draft.md?repo=mobile).
 
 Note that like [Selenium::Remote::Driver](https://metacpan.org/pod/Selenium::Remote::Driver), you shouldn't have to
 instantiate [Appium::Element](https://metacpan.org/pod/Appium::Element) on your own; this module will create
@@ -44,7 +43,7 @@ appropriate on an element vs the driver.
 
 # NEW OR UPDATED FUNCTIONALITY
 
-### Contexts
+## Contexts
 
 Instead of using windows to manage switching between native
 applications and webviews, use the analogous context methods:
@@ -55,7 +54,7 @@ applications and webviews, use the analogous context methods:
     my $context = 'WEBVIEW_1'
     $appium->switch_to->context( $context );
 
-### Finding Elements
+## Finding Elements
 
 There are different strategies available for finding elements in
 Appium. The options for strategies are:
@@ -285,6 +284,32 @@ Perform a precise tap. See ["tap" in Appium::TouchActions](https://metacpan.org/
 information.
 
     $appium->tap( 0.5, 0.5 );
+
+## page
+
+A shadow of [arc](https://github.com/appium/ruby_console)'s page
+command, this will print to STDOUT a list of all the visible elements
+on the page along with whatever details are available (name, label,
+value, etc). It's currently only compatible with iOS, and it doesn't
+take filtering arguments like arc's version of page does.
+
+    $appium->page;
+    # UIAWindow
+    #   UIATextField
+    #     name          : IntegerA
+    #     label         : TextField1
+    #     value         : 5
+    #     UIATextField
+    #       name        : TextField1
+    #       label       : TextField1
+    #       value       : 5
+    #   UIATextField
+    #     name          : IntegerB
+    #     label         : TextField2
+    #     UIATextField
+    #       name        : TextField2
+    #       label       : TextField2
+    # ...
 
 # SEE ALSO
 

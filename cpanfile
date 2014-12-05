@@ -7,9 +7,14 @@ requires "Selenium::Remote::ErrorHandler" => "0";
 requires "Selenium::Remote::RemoteConnection" => "0";
 requires "Selenium::Remote::WebElement" => "0";
 requires "constant" => "0";
+requires "feature" => "0";
 
 on 'test' => sub {
+  requires "Capture::Tiny" => "0";
   requires "Cwd" => "0";
+  requires "File::Basename" => "0";
+  requires "FileHandle" => "0";
+  requires "IO::Socket::INET" => "0";
   requires "JSON" => "0";
   requires "Test::Deep" => "0";
   requires "Test::Exception" => "0";
