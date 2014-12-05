@@ -125,6 +125,8 @@ MISC: {
         path => 'path'
     });
 
+    ok($mock_appium->can('tap'), 'tap: Appium can tap');
+    lives_ok(sub { $mock_appium->tap }, 'tap: and we can tap without dying');
 }
 
 done_testing;

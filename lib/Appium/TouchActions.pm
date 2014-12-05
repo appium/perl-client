@@ -1,5 +1,6 @@
 package Appium::TouchActions;
 
+# ABSTRACT: Perform touch actions through appium: taps, swipes, scrolling
 use Moo;
 
 has 'driver' => (
@@ -22,10 +23,10 @@ the screen. Values greater than 1 will be interpreted as pixels. (10,
 screen.
 
     # tap in the center of the screen
-    $appium->precise_tap( 0.5, 0.5 )
+    $appium->tap( 0.5, 0.5 )
 
     # tap a pixel position
-    $appium->precise_tap( 300, 500 );
+    $appium->tap( 300, 500 );
 
 =cut
 
