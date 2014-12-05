@@ -1,6 +1,6 @@
 Revision history for perl module Appium
 
-0.0701 2014-12-05
+0.0702 2014-12-05
  - Add `page` command like arc's
  - Add precise tap subroutine that maps does 'mobile: tap'
 

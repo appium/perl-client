@@ -69,7 +69,7 @@
          "web" : "https://github.com/appium/perl-client"
       }
    },
-   "version" : "0.0701",
+   "version" : "0.0702",
    "x_contributors" : [
       "Freddy Vega <freddy@vgp-miami.com>"
    ]
