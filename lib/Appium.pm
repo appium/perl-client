@@ -34,11 +34,9 @@ WebDriver JSON wire protocol. This module is a thin extension of
 L<Selenium::Remote::Driver> that adds Appium specific API endpoints
 and Appium-specific constructor defaults. It's woefully incomplete at
 the moment, so feel free to pitch in at the L<Github
-repo|https://github.com/appium/perl-client>!
-
-For details on how Appium extends the Webdriver spec, see the Selenium
-project's L<spec-draft
-document|https://code.google.com/p/selenium/source/browse/spec-draft.md?repo=mobile>
+repo|https://github.com/appium/perl-client>! For details on how Appium
+extends the Webdriver spec, see the Selenium project's L<spec-draft
+document|https://code.google.com/p/selenium/source/browse/spec-draft.md?repo=mobile>.
 
 Note that like L<Selenium::Remote::Driver>, you shouldn't have to
 instantiate L<Appium::Element> on your own; this module will create
@@ -55,7 +53,7 @@ appropriate on an element vs the driver.
 
 =head1 NEW OR UPDATED FUNCTIONALITY
 
-=head3 Contexts
+=head2 Contexts
 
 Instead of using windows to manage switching between native
 applications and webviews, use the analogous context methods:
@@ -66,7 +64,7 @@ applications and webviews, use the analogous context methods:
     my $context = 'WEBVIEW_1'
     $appium->switch_to->context( $context );
 
-=head3 Finding Elements
+=head2 Finding Elements
 
 There are different strategies available for finding elements in
 Appium. The options for strategies are:
