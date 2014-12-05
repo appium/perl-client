@@ -39,6 +39,6 @@ requires:
 resources:
   bugtracker: https://github.com/appium/perl-client/issues
   repository: git://github.com/appium/perl-client.git
-version: '0.07'
+version: '0.0701'
 x_contributors:
   - 'Freddy Vega <freddy@vgp-miami.com>'

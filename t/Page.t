@@ -2,6 +2,7 @@
 
 use strict;
 use warnings;
+use Appium;
 use Cwd qw/abs_path/;
 use Capture::Tiny qw/capture_stdout/;
 use File::Basename qw/dirname/;
@@ -9,15 +10,8 @@ use FileHandle;
 use Test::More;
 use IO::Socket::INET;
 
-BEGIN: {
-    unless (use_ok('Appium')) {
-        BAIL_OUT("Couldn't load Appium");
-        exit;
-    }
-}
-
-# plan skip_all => "Release tests not required for installation."
-#   unless $ENV{RELEASE_TESTING};
+plan skip_all => "Release tests not required for installation."
+  unless $ENV{RELEASE_TESTING};
 
 my $sock = IO::Socket::INET->new(
     PeerAddr => 'localhost',

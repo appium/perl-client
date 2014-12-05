@@ -1,5 +1,9 @@
 Revision history for perl module Appium
 
+0.0701 2014-12-05
+ - Add `page` command like arc's
+ - Add precise tap subroutine that maps does 'mobile: tap'
+
 0.06 2014-11-27
  - Fix error message for invalid finder strategies via dep upgrade
 

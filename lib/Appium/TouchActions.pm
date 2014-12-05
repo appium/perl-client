@@ -1,5 +1,5 @@
 package Appium::TouchActions;
-$Appium::TouchActions::VERSION = '0.07';
+$Appium::TouchActions::VERSION = '0.0701';
 use Moo;
 
 has 'driver' => (
@@ -36,7 +36,7 @@ Appium::TouchActions
 
 =head1 VERSION
 
-version 0.07
+version 0.0701
 
 =head1 METHODS
 

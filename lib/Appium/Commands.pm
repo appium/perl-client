@@ -1,5 +1,5 @@
 package Appium::Commands;
-$Appium::Commands::VERSION = '0.07';
+$Appium::Commands::VERSION = '0.0701';
 # ABSTRACT: Appium specific extensions to the Webdriver JSON protocol
 use Moo;
 extends 'Selenium::Remote::Commands';
@@ -207,7 +207,7 @@ Appium::Commands - Appium specific extensions to the Webdriver JSON protocol
 
 =head1 VERSION
 
-version 0.07
+version 0.0701
 
 =head1 DESCRIPTION
 
