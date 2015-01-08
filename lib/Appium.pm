@@ -1,9 +1,10 @@
 package Appium;
-$Appium::VERSION = '0.0702';
+$Appium::VERSION = '0.08';
 # ABSTRACT: Perl bindings to the Appium mobile automation framework (WIP)
 use Carp qw/croak/;
 use feature qw/state/;
 use Moo;
+use MooX::Aliases 0.001005;
 
 use Appium::Commands;
 use Appium::Element;
@@ -33,14 +34,7 @@ use constant FINDERS => {
 has '+desired_capabilities' => (
     is => 'rw',
     required => 1,
-    init_arg => 'caps',
-    coerce => sub {
-        my $caps = shift;
-        croak 'Desired capabilities must include: app'
-          unless exists $caps->{app};
-
-        return $caps;
-    }
+    alias => 'caps',
 );
 
 has '_type' => (
@@ -474,7 +468,7 @@ Appium - Perl bindings to the Appium mobile automation framework (WIP)
 
 =head1 VERSION
 
-version 0.0702
+version 0.08
 
 =head1 SYNOPSIS
 

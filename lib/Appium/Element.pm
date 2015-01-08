@@ -1,5 +1,5 @@
 package Appium::Element;
-$Appium::Element::VERSION = '0.0702';
+$Appium::Element::VERSION = '0.08';
 # ABSTRACT: Representation of an Appium element
 use Moo;
 use MooX::Aliases;
@@ -44,7 +44,7 @@ Appium::Element - Representation of an Appium element
 
 =head1 VERSION
 
-version 0.0702
+version 0.08
 
 =head1 SYNOPSIS
 

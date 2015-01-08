@@ -8,6 +8,7 @@ build_requires:
   File::Basename: '0'
   FileHandle: '0'
   IO::Socket::INET: '0'
+  IPC::Cmd: '0'
   JSON: '0'
   Test::Deep: '0'
   Test::Exception: '0'
@@ -28,7 +29,7 @@ name: Appium
 requires:
   Carp: '0'
   Moo: '0'
-  MooX::Aliases: '0'
+  MooX::Aliases: '0.001005'
   Selenium::Remote::Commands: '0'
   Selenium::Remote::Driver: '0.2202'
   Selenium::Remote::ErrorHandler: '0'
@@ -39,6 +40,6 @@ requires:
 resources:
   bugtracker: https://github.com/appium/perl-client/issues
   repository: git://github.com/appium/perl-client.git
-version: '0.0702'
+version: '0.08'
 x_contributors:
   - 'Freddy Vega <freddy@vgp-miami.com>'
