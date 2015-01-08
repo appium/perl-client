@@ -112,13 +112,6 @@ has '+desired_capabilities' => (
     is => 'rw',
     required => 1,
     alias => 'caps',
-    coerce => sub {
-        my $caps = shift;
-        croak 'Desired capabilities must include: app'
-          unless exists $caps->{app};
-
-        return $caps;
-    }
 );
 
 has '_type' => (
