@@ -1,6 +1,6 @@
 Revision history for perl module Appium
 
-0.08 2015-01-08
+0.0801 2015-01-08
  - Use 'caps' for alias of desired_capabilities in init args
  - Remove inaccurate coercion on desired caps
 
