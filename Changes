@@ -1,5 +1,9 @@
 Revision history for perl module Appium
 
+0.08 2015-01-08
+ - Use 'caps' for alias of desired_capabilities in init args
+ - Remove inaccurate coercion on desired caps
+
 0.0702 2014-12-05
  - Add `page` command like arc's
  - Add precise tap subroutine that maps does 'mobile: tap'
