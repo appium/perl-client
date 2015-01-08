@@ -4,6 +4,7 @@ package Appium;
 use Carp qw/croak/;
 use feature qw/state/;
 use Moo;
+use MooX::Aliases;
 
 use Appium::Commands;
 use Appium::Element;
@@ -110,7 +111,7 @@ use constant FINDERS => {
 has '+desired_capabilities' => (
     is => 'rw',
     required => 1,
-    init_arg => 'caps',
+    alias => 'caps',
     coerce => sub {
         my $caps = shift;
         croak 'Desired capabilities must include: app'

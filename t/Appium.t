@@ -23,11 +23,32 @@ BEGIN: {
 
 my $mock_appium = MockAppium->new;
 
+
 INVALID_STRATEGY: {
     throws_ok( sub { $mock_appium->find_element('a locator', 'invalid strategy'); },
                qr/android/,
                'Appium should tell us about the right finder strategies'
            );
+
+}
+
+CAPS: {
+    my $fake_caps = { app => 'fake' };
+    my $caps_key = MockAppium->new(caps => $fake_caps);
+    ok($caps_key, 'caps is a valid key for instantiation');
+
+    my $desired_key = MockAppium->new(desired_capabilities => $fake_caps);
+    ok($desired_key, 'desired is a valid key for instantiation');
+
+    throws_ok(sub { MockAppium->new(bad_key => $fake_caps) },
+              qr/Missing required arguments/,
+              'at least one of desired_capabilities or caps is required for instantiation');
+
+    throws_ok(sub { MockAppium->new(
+        desired_capabilities => $fake_caps,
+        caps                 => $fake_caps
+    ) },
+              qr/Conflicting init_args/, 'we won\'t accept both of them, either');
 }
 
 CONTEXT: {
