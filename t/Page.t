@@ -7,11 +7,12 @@ use Cwd qw/abs_path/;
 use Capture::Tiny qw/capture_stdout/;
 use File::Basename qw/dirname/;
 use FileHandle;
-use Test::More;
 use IO::Socket::INET;
+use IPC::Cmd qw/can_run/;
+use Test::More;
 
-plan skip_all => "Release tests not required for installation."
-  unless $ENV{RELEASE_TESTING};
+# plan skip_all => "Release tests not required for installation."
+#   unless $ENV{RELEASE_TESTING};
 
 my $sock = IO::Socket::INET->new(
     PeerAddr => 'localhost',
@@ -20,6 +21,11 @@ my $sock = IO::Socket::INET->new(
 );
 plan skip_all => "No Appium server found" unless $sock;
 
+my $xcrun = can_run('xcrun');
+plan skip_all => "No xcrun binary found" unless $xcrun;
+
+my $sdk = `$xcrun --sdk iphonesimulator -show-sdk-version` + 0;
+
 my $test_app = dirname(abs_path(__FILE__)) . '/fixture/TestApp.zip';
 
 my $appium = Appium->new(
@@ -27,7 +33,7 @@ my $appium = Appium->new(
         app => $test_app,
         deviceName => 'iPhone 6',
         platformName => 'iOS',
-        platformVersion => '8.1',
+        platformVersion => $sdk,
     }
 );
 
