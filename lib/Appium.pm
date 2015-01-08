@@ -4,7 +4,7 @@ package Appium;
 use Carp qw/croak/;
 use feature qw/state/;
 use Moo;
-use MooX::Aliases;
+use MooX::Aliases 0.001005;
 
 use Appium::Commands;
 use Appium::Element;
