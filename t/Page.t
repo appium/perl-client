@@ -11,8 +11,8 @@ use IO::Socket::INET;
 use IPC::Cmd qw/can_run/;
 use Test::More;
 
-# plan skip_all => "Release tests not required for installation."
-#   unless $ENV{RELEASE_TESTING};
+plan skip_all => "Release tests not required for installation."
+  unless $ENV{RELEASE_TESTING};
 
 my $sock = IO::Socket::INET->new(
     PeerAddr => 'localhost',
