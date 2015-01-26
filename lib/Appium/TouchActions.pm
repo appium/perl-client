@@ -1,5 +1,5 @@
 package Appium::TouchActions;
-$Appium::TouchActions::VERSION = '0.0801';
+$Appium::TouchActions::VERSION = '0.0802';
 # ABSTRACT: Perform touch actions through appium: taps, swipes, scrolling
 use Moo;
 
@@ -37,7 +37,7 @@ Appium::TouchActions - Perform touch actions through appium: taps, swipes, scrol
 
 =head1 VERSION
 
-version 0.0801
+version 0.0802
 
 =head1 METHODS
 

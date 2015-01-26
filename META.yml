@@ -18,9 +18,9 @@ build_requires:
   strict: '0'
   warnings: '0'
 configure_requires:
-  ExtUtils::MakeMaker: '6.30'
+  ExtUtils::MakeMaker: '0'
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 5.014, CPAN::Meta::Converter version 2.140640'
+generated_by: 'Dist::Zilla version 5.031, CPAN::Meta::Converter version 2.143240'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -40,6 +40,6 @@ requires:
 resources:
   bugtracker: https://github.com/appium/perl-client/issues
   repository: git://github.com/appium/perl-client.git
-version: '0.0801'
+version: '0.0802'
 x_contributors:
   - 'Freddy Vega <freddy@vgp-miami.com>'

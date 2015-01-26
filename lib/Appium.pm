@@ -1,5 +1,5 @@
 package Appium;
-$Appium::VERSION = '0.0801';
+$Appium::VERSION = '0.0802';
 # ABSTRACT: Perl bindings to the Appium mobile automation framework (WIP)
 use Carp qw/croak/;
 use feature qw/state/;
@@ -19,11 +19,7 @@ extends 'Selenium::Remote::Driver';
 
 
 use constant FINDERS => {
-    class               => 'class name',
-    class_name          => 'class name',
-    id                  => 'id',
-    name                => 'name',
-    xpath               => 'xpath',
+    %{ Selenium::Remote::Driver->FINDERS },
     ios                 => '-ios uiautomation',
     ios_uiautomation    => '-ios uiautomation',
     android             => '-android uiautomator',
@@ -468,7 +464,7 @@ Appium - Perl bindings to the Appium mobile automation framework (WIP)
 
 =head1 VERSION
 
-version 0.0801
+version 0.0802
 
 =head1 SYNOPSIS
 
@@ -519,15 +515,29 @@ applications and webviews, use the analogous context methods:
 =head2 Finding Elements
 
 There are different strategies available for finding elements in
-Appium. The options for strategies are:
+Appium. The options for strategies in a native application are:
 
-    id                          => 'id',
-    name                        => 'name',
-    xpath                       => 'xpath',
-    class|class_name            => 'class name',
-    accessibility_id            => 'accessibility id'
-    ios|ios_uiautomation        => '-ios uiautomation',
-    android|android_uiautomator => '-android uiautomator'
+    id
+    name
+    xpath
+    class|class_name
+    accessibility_id
+    ios|ios_uiautomation
+    android|android_uiautomator
+
+If you're testing a mobile browser like Chrome or Safari, you'll have
+access to the same set of finders as in Webdriver:
+
+    class
+    class_name
+    css
+    id
+    link
+    link_text
+    name
+    partial_link_text
+    tag_name
+    xpath
 
 Here are some examples of using the Appium specific strategies:
 
@@ -807,6 +817,8 @@ feature.
 Daniel Gempesaw <gempesaw@gmail.com>
 
 =head1 CONTRIBUTOR
+
+=for stopwords Freddy Vega
 
 Freddy Vega <freddy@vgp-miami.com>
 

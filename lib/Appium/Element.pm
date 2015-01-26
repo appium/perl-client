@@ -1,5 +1,5 @@
 package Appium::Element;
-$Appium::Element::VERSION = '0.0801';
+$Appium::Element::VERSION = '0.0802';
 # ABSTRACT: Representation of an Appium element
 use Moo;
 use MooX::Aliases;
@@ -44,7 +44,7 @@ Appium::Element - Representation of an Appium element
 
 =head1 VERSION
 
-version 0.0801
+version 0.0802
 
 =head1 SYNOPSIS
 
@@ -60,8 +60,31 @@ version 0.0801
 L<Appium::Element>s are the elements in your app with which you can
 interact - you can send them taps, clicks, text for inputs, and query
 them as to their state - whether they're displayed, or enabled,
-etc. See L<Selenium::Remote::WebElement> for the full list of subs
-that you can use on Appium elements.
+etc. See L<Selenium::Remote::WebElement> for the full descriptions of
+the following subroutines that we inherit:
+
+    click
+    submit
+    send_keys
+    is_selected
+    set_selected
+    toggle
+    is_enabled
+    get_element_location
+    get_element_location_in_view
+    get_tag_name
+    clear
+    get_attribute
+    get_value
+    is_displayed
+    is_hidden
+    get_size
+    get_text
+
+Although we blindly inherit all of these subs, there's no guarantee
+that they will work in Appium. For example, we inherit
+L<Selenium::Remote::WebElement/describe>, but Appium doesn't implement
+C<describe>, so it won't do anything in this sub.
 
 =head1 METHODS
 
