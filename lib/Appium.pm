@@ -1,5 +1,5 @@
 package Appium;
-$Appium::VERSION = '0.0802';
+$Appium::VERSION = '0.0803';
 # ABSTRACT: Perl bindings to the Appium mobile automation framework (WIP)
 use Carp qw/croak/;
 use feature qw/state/;
@@ -464,7 +464,7 @@ Appium - Perl bindings to the Appium mobile automation framework (WIP)
 
 =head1 VERSION
 
-version 0.0802
+version 0.0803
 
 =head1 SYNOPSIS
 

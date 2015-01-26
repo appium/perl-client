@@ -1,5 +1,5 @@
 package Appium::SwitchTo;
-$Appium::SwitchTo::VERSION = '0.0802';
+$Appium::SwitchTo::VERSION = '0.0803';
 # ABSTRACT: Provide access to Appium's context switching functionality
 use Moo;
 
@@ -33,7 +33,7 @@ Appium::SwitchTo - Provide access to Appium's context switching functionality
 
 =head1 VERSION
 
-version 0.0802
+version 0.0803
 
 =head1 METHODS
 

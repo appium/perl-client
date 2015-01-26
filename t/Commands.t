@@ -91,13 +91,17 @@ ELEMENT_COMMANDS: {
     }
 }
 
-# There are 70 commands that we inherit from S::R::Commands. We add
+# There are 77 commands that we inherit from S::R::Commands. We add
 # our own, and then delete them one by one in each foreach loop
 # above. A few are aliased to more expressive commands ( tap vs click,
-# for example) and will subtract from the total.By the time we get
-# here, there should only be the original 70 left, minus however many
+# for example) and will subtract from the total. By the time we get
+# here, there should only be the original 77 left, minus however many
 # aliases are set.
-my $SRD_COMMANDS = 69;
+use Selenium::Remote::Commands;
+my $commands = Selenium::Remote::Commands->new->get_cmds;
+my $count = scalar keys %{ $commands };
+my $aliases = 1; # one alias: tap instead of click
+my $SRD_COMMANDS = $count - $aliases;
 cmp_ok( scalar keys %{ $cmds }, '==', $SRD_COMMANDS, 'All Appium Commands are implemented!');
 
 done_testing;
