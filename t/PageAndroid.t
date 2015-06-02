@@ -26,17 +26,20 @@ plan skip_all => 'No running android devices found: ' . $devices
   unless $is_device_available;
 
 describe 'Android Page command' => sub {
-    # eval
-        my ($appium) = Appium->new( caps => {
-            app => dirname(abs_path(__FILE__)) . '/fixture/ApiDemos-debug.apk',
-            deviceName => 'Android Emulator',
-            platformName => 'Android',
-            platformVersion => '4.4.4'
-        });
+    my $appium = Appium->new( caps => {
+        app => dirname(abs_path(__FILE__)) . '/fixture/ApiDemos-debug.apk',
+        deviceName => 'Android Emulator',
+        platformName => 'Android',
+        platformVersion => '4.4.4'
+    });
 
     it 'should print out the elements' => sub {
         my $page = capture_stdout { $appium->page };
         ok( $page );
+    };
+
+    after all => sub {
+        undef $appium;
     };
 };
 
