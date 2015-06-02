@@ -36,12 +36,9 @@ describe 'Android Page command' => sub {
     it 'should print out the elements' => sub {
         my $page = capture_stdout { $appium->page };
         ok( $page );
-    };
 
-    after all => sub {
-        undef $appium;
+        $appium->quit;
     };
 };
-
 
 runtests;
