@@ -1,19 +1,17 @@
-package Appium::CanPage;
+package Appium::Ios::CanPage;
 
-# ABSTRACT: Display all interactable elements, useful during test authoring
+# ABSTRACT: Display all interesting elements for iOS, useful during test authoring
 use Moo::Role;
 use feature qw/state/;
-
-requires 'is_android';
-requires 'is_ios';
 
 =method page
 
 A shadow of L<arc|https://github.com/appium/ruby_console>'s page
 command, this will print to STDOUT a list of all the visible elements
 on the page along with whatever details are available (name, label,
-value, etc). It's currently only compatible with iOS, and it doesn't
-take filtering arguments like arc's version of page does.
+value, etc). This is the iOS version of the command; the Android
+output looks slightly different; see L<Appium::Android::CanPage> for
+more information.
 
     $appium->page;
     # UIAWindow
@@ -38,12 +36,11 @@ take filtering arguments like arc's version of page does.
 sub page {
     my ($self) = @_;
 
-    $self->_get_page;
+    return $self->_get_page;
 }
 
 sub _get_page {
     my ($self, $element, $level) = @_;
-    return 'TODO: implement page on android' if $self->is_android;
 
     $element //= $self->_source_window_with_children;
     $level //= 0;

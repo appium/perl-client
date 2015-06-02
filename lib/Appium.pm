@@ -208,6 +208,7 @@ sub BUILD {
     my ($self) = @_;
 
     $self->_type($self->desired_capabilities->{platformName});
+    with 'Appium::Ios::CanPage' if $self->is_ios;
 }
 
 =method contexts ()
@@ -725,7 +726,7 @@ information.
 =cut
 
 sub is_android {
-    return shift->_type eq 'Android'
+    return shift->_type eq 'Android';
 }
 
 sub is_ios {
@@ -738,9 +739,6 @@ Display a quick summary of all elements that Appium thinks it can
 interact with. See L<Appium::CanPage/page> for more information.
 
 =cut
-
-with 'Appium::CanPage';
-
 
 =head1 SEE ALSO
 
