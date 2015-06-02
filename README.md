@@ -95,6 +95,29 @@ Here are some examples of using the Appium specific strategies:
 Note that using `id` as your finding strategy also seems to find
 elements by accessibility\_id.
 
+If you have Selenium::Remote::Driver v0.24 or later, you'll also have
+access to these non-croaking, auto-generated parameter versions of the
+finders; see ["Selenium::Remote::Driver/find\_element"](#selenium-remote-driver-find_element) for more
+information. These subs take one argument: the locator for the element
+you want, and they'll throw a warning and return `0` if an element is
+not found.
+
+    find_element_by_id
+    find_element_by_name
+    find_element_by_xpath
+    find_element_by_class
+    find_element_by_accessibility_id
+    find_element_by_ios
+    find_element_by_android
+    find_element_by_class
+    find_element_by_css
+    find_element_by_id
+    find_element_by_link
+    find_element_by_name
+    find_element_by_partial_link_text
+    find_element_by_tag_name
+    find_element_by_xpath
+
 # METHODS
 
 ## contexts ()
