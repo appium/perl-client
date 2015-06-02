@@ -209,6 +209,7 @@ sub BUILD {
 
     $self->_type($self->desired_capabilities->{platformName});
     with 'Appium::Ios::CanPage' if $self->is_ios;
+    with 'Appium::Android::CanPage' if $self->is_android;
 }
 
 =method contexts ()
@@ -730,7 +731,7 @@ sub is_android {
 }
 
 sub is_ios {
-    return shift->_type eq 'iOS'
+    return shift->_type eq 'iOS';
 }
 
 =method page
