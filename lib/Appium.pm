@@ -141,10 +141,11 @@ use constant FINDERS => {
     accessibility_id    => 'accessibility id'
 };
 
-has '+desired_capabilities' => (
+has 'desired_capabilities' => (
     is => 'rw',
     required => 1,
     alias => 'caps',
+    predicate => 1
 );
 
 has '_type' => (
