@@ -2,7 +2,6 @@ package Appium::Android::CanPage;
 
 # ABSTRACT: Display all interesting elements for Android, useful during authoring
 use Moo::Role;
-use feature qw/state/;
 use XML::LibXML;
 
 
@@ -26,8 +25,6 @@ sub page {
 sub _inspect_nodes {
     my ($self, @nodes) = @_;
 
-    state $interesting_attrs = [ qw/text resource-id content-desc/ ];
-    state $indent = '  ';
 
     use feature qw/say/;
     foreach my $node (@nodes) {
