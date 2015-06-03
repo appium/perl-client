@@ -7,11 +7,9 @@ use feature qw/state/;
 =method page
 
 A shadow of L<arc|https://github.com/appium/ruby_console>'s page
-command, this will print to STDOUT a list of all the visible elements
-on the page along with whatever details are available (name, label,
-value, etc). This is the iOS version of the command; the Android
-output looks slightly different; see L<Appium::Android::CanPage> for
-more information.
+command, this will print to STDOUT a list of all the interesting
+elements on the current page along with whatever details are available
+(name, label, value, etc).
 
     $appium->page;
     # UIAWindow
@@ -89,5 +87,12 @@ sub _source_window_with_children {
         return $self->_source_window_with_children(++$index);
     }
 }
+
+=head1 SEE ALSO
+
+Appium
+Appium::Ios::CanPage
+
+=cut
 
 1;

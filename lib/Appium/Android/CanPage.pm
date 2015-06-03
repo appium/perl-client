@@ -14,6 +14,49 @@ has _page_parser => (
     default => sub { return XML::LibXML->new; }
 );
 
+=method page
+
+Display a list of the currently visible elements that have at least
+one of the following attributes: C<text>, C<resource-id>, or
+C<content-desc>. This is a shadow of
+L<arc|https://github.com/appium/ruby_console>'s own page command,
+mimicked here for its usefulness during test authoring.
+
+Think of it like a lo-fi version of Chrome's C<Inspect element>.
+
+    $appium->page;
+    # android.view.View
+    #   resource-id: android:id/action_bar_overlay_layout
+    #
+    # android.widget.FrameLayout
+    #   resource-id: android:id/action_bar_container
+    #
+    # android.view.View
+    #   resource-id: android:id/action_bar
+    #
+    # android.widget.ImageView
+    #   resource-id: android:id/home
+    #
+    # android.widget.TextView
+    #   text: API Demos
+    #   resource-id: android:id/action_bar_title
+    #
+    # android.widget.FrameLayout
+    #   resource-id: android:id/content
+    #
+    # android.widget.ListView
+    #   resource-id: android:id/list
+    #
+    # android.widget.TextView
+    #   text: Accessibility
+    #   resource-id: android:id/text1
+    #   content-desc: Accessibility
+    # ...
+
+This behavior is only prepared for native apps; we've no idea what'll
+happen if you use this on a webview and/or with chromedriver.
+
+=cut
 
 sub page {
     my ($self) = @_;
@@ -73,5 +116,12 @@ sub _format_attribute {
 
     return "  $name: $value";
 }
+
+=head1 SEE ALSO
+
+Appium
+Appium::Android::CanPage
+
+=cut
 
 1;

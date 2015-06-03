@@ -740,8 +740,10 @@ sub is_ios {
 
 =method page
 
-Display a quick summary of all elements that Appium thinks it can
-interact with. See L<Appium::CanPage/page> for more information.
+Display a quick summary of all interesting elements on the current
+view. See L<Appium::Android::CanPage> for more information about the
+Android implementation, and L<Appium::Ios::CanPage> for the iOS
+implementation.
 
 =cut
 
