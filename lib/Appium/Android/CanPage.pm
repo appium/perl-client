@@ -5,11 +5,18 @@ use Moo::Role;
 use feature qw/state/;
 use XML::LibXML;
 
+
+has _page_parser => (
+    is => 'lazy',
+    default => sub { return XML::LibXML->new; }
+);
+
+
 sub page {
     my ($self) = @_;
 
     my $source = $self->get_page_source;
-    my $parser = XML::LibXML->new;
+    my $parser = $self->_page_parser;
     my $dom = $parser->load_xml( string => $source );
     my @nodes = $dom->childNodes;
 
