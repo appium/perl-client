@@ -208,8 +208,12 @@ sub BUILD {
     my ($self) = @_;
 
     $self->_type($self->desired_capabilities->{platformName});
-    with 'Appium::Ios::CanPage' if $self->is_ios;
-    with 'Appium::Android::CanPage' if $self->is_android;
+
+    Moo::Role->apply_roles_to_object( $self, 'Appium::Ios::CanPage' )
+        if $self->is_ios;
+
+    Moo::Role->apply_roles_to_object( $self, 'Appium::Android::CanPage' )
+        if $self->is_android;
 }
 
 =method contexts ()
