@@ -324,29 +324,10 @@ information.
 
 ## page
 
-A shadow of [arc](https://github.com/appium/ruby_console)'s page
-command, this will print to STDOUT a list of all the visible elements
-on the page along with whatever details are available (name, label,
-value, etc). It's currently only compatible with iOS, and it doesn't
-take filtering arguments like arc's version of page does.
-
-    $appium->page;
-    # UIAWindow
-    #   UIATextField
-    #     name          : IntegerA
-    #     label         : TextField1
-    #     value         : 5
-    #     UIATextField
-    #       name        : TextField1
-    #       label       : TextField1
-    #       value       : 5
-    #   UIATextField
-    #     name          : IntegerB
-    #     label         : TextField2
-    #     UIATextField
-    #       name        : TextField2
-    #       label       : TextField2
-    # ...
+Display a quick summary of all interesting elements on the current
+view. See [Appium::Android::CanPage](https://metacpan.org/pod/Appium::Android::CanPage) for more information about the
+Android implementation, and [Appium::Ios::CanPage](https://metacpan.org/pod/Appium::Ios::CanPage) for the iOS
+implementation.
 
 # SEE ALSO
 
