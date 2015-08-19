@@ -43,4 +43,17 @@ sub tap {
     return $self->driver;
 }
 
+sub scroll {
+    my ($self, $direction) = @_;
+
+    $self->execute_script(
+        'mobile: scroll',
+        { direction => 'down' }
+    );
+
+    return $self->driver;
+}
+
+
+
 1;
