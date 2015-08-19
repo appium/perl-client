@@ -5,7 +5,7 @@ use Moo::Role;
 use XML::LibXML;
 
 has _page_printer => (
-    is => 'lazy',
+    is => 'rw',
     default => sub { return sub { print shift . "\n"; } }
 );
 
