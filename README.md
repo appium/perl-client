@@ -6,7 +6,7 @@ Appium - Perl bindings to the Appium mobile automation framework (WIP)
 
 # VERSION
 
-version 0.0803
+version 0.0804
 
 # SYNOPSIS
 
