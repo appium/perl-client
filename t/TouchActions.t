@@ -1,4 +1,4 @@
-#! /usr/bin/perl
+#!/usr/bin/perl
 
 use strict;
 use warnings;
@@ -16,10 +16,11 @@ my $actions;
     package FakeAppium;
 
     use Moo;
-    sub execute_script {
-        my ($self, $action, $json) = @_;
+    sub perform {
+		
+		my ($self, $params ) = @_;
+		my $actions = $self->{'touch_actions'}->{'perform_actions'};
 
-        $actions->{$action} = $json;
     }
 }
 
@@ -31,11 +32,11 @@ my $ta = Appium::TouchActions->new(
 
 TOUCH_ACTIONS: {
     my ($x, $y) = (0.2, 0.2);
-    $ta->tap( $x, $y );
+    $ta->tap( $x, $y )->perform();
 
-    ok(exists $actions->{'mobile: tap'}, 'we send the correct javascript for precise taps');
-    is($actions->{'mobile: tap'}->{x}, $x, 'with the correct x coords');
-    is($actions->{'mobile: tap'}->{y}, $y, 'with the correct y coords');
+    ok(exists $actions->{'action'}->{'tap'}, 'we perform precise taps');
+    is($actions->{'options'}->{x}, $x, 'with the correct x coords');
+    is($actions->{'options'}->{y}, $y, 'with the correct y coords');
 
 }
 

@@ -194,7 +194,7 @@ has 'touch_actions' => (
     is => 'ro',
     lazy => 1,
     init_arg => undef,
-    handles => [ qw/tap/ ],
+    handles => [ qw/tap swipe wait moveTo release press longPress/ ],
     default => sub { Appium::TouchActions->new( driver => shift ); }
 );
 
@@ -359,6 +359,21 @@ sub press_keycode {
     };
 
     $params->{metastate} = $metastate if $metastate;
+
+    return $self->_execute_command( $res, $params );
+}
+
+sub perform {
+    
+
+    my ($self, $params ) = @_;
+    
+    my $res     = { command => 'touch_action' };
+	my $actions = $self->{'touch_actions'}->{'perform_actions'}; 
+
+	$params     = {'actions' => $actions}; 
+
+	@{$self->{'touch_actions'}->{'perform_actions'}} = ();
 
     return $self->_execute_command( $res, $params );
 }

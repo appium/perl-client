@@ -23,24 +23,124 @@ the screen. Values greater than 1 will be interpreted as pixels. (10,
 screen.
 
     # tap in the center of the screen
-    $appium->tap( 0.5, 0.5 )
+    $appium->tap( 0.5, 0.5 )->perform();
 
     # tap a pixel position
-    $appium->tap( 300, 500 );
+    $appium->tap( 300, 500 )->perform();
 
 =cut
 
 sub tap {
     my ($self, @coords) = @_;
 
-    my $params = {
+	my $coordinates = {
+
         x => $coords[0],
         y => $coords[1]
     };
 
-    $self->execute_script('mobile: tap', $params);
+
+    #$self->execute_script('mobile: tap', $params);
+
+	my $params = { 'action' => 'tap' , 'options' => $coordinates };
+
+	push @{$self->{'perform_actions'}}, $params;
 
     return $self->driver;
+}
+
+
+
+sub press {
+	my ($self, @coords) = @_;
+
+
+	my $coordinates = {
+
+        x => $coords[0],
+        y => $coords[1]
+    };
+
+	my $params = { 'action' => 'press' , 'options' => $coordinates };
+
+    push @{$self->{'perform_actions'}}, $params;
+
+    return $self->driver;	
+}
+
+
+sub wait {
+	my ($self, $wait) = @_;
+
+	my $options = {
+		ms => $wait
+	};
+
+	my $params = { 'action' => 'wait' , 'options' => $options };
+
+    push @{$self->{'perform_actions'}}, $params;
+
+    return $self->driver;
+}
+
+
+sub moveTo {
+	my ($self, @coords) = @_;
+
+    my $coordinates = {
+
+        x => $coords[0],
+        y => $coords[1]
+    };
+
+
+	my $params = { 'action' => 'moveTo' , 'options' => $coordinates };
+
+    push @{$self->{'perform_actions'}}, $params;
+
+    return $self->driver;
+		
+}
+
+
+sub release {
+	my ($self, @options) = @_;
+
+	my $options = {};
+
+	my $params = { 'action' => 'release' , 'options' => $options };	
+
+	push @{$self->{'perform_actions'}}, $params;
+ 
+    return $self->driver;
+}
+
+
+sub longPress {
+	my ($self, @coords) = @_;
+
+
+    my $coordinates = {
+
+        x => $coords[0],
+        y => $coords[1],
+		duration => $coords[2]
+    };
+
+    my $params = { 'action' => 'press' , 'options' => $coordinates };
+
+    push @{$self->{'perform_actions'}}, $params;
+
+    return $self->driver;
+}
+
+
+sub swipe {
+
+	my ($self, @coords) = @_;
+
+	return $self->press($coords[0], $coords[1])->wait($coords[4])->moveTo($coords[2], $coords[3])->release();
+
 }
 
 1;
