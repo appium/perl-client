@@ -366,14 +366,14 @@ sub press_keycode {
 sub perform {
     
 
-    my ($self, $params ) = @_;
+    my $self = shift;
     
     my $res     = { command => 'touch_action' };
-	my $actions = $self->{'touch_actions'}->{'perform_actions'}; 
+	my @actions = @{$self->{'touch_actions'}->{'perform_actions'}}; 
 
-	$params     = {'actions' => $actions}; 
+	my $params  = {'actions' => \@actions}; 
 
-	@{$self->{'touch_actions'}->{'perform_actions'}} = ();
+	undef @{$self->{'touch_actions'}->{'perform_actions'}};
 
     return $self->_execute_command( $res, $params );
 }
