@@ -369,15 +369,22 @@ sub perform {
     my $self = shift;
     
     my $res     = { command => 'touch_action' };
-	my @actions = @{$self->{'touch_actions'}->{'perform_actions'}}; 
+
+	if (exists $self->{'touch_actions'}->{'perform_actions'}) {
+
+		my @actions = @{$self->{'touch_actions'}->{'perform_actions'}}; 
 
 	my $params  = {'actions' => \@actions}; 
 
 	undef @{$self->{'touch_actions'}->{'perform_actions'}};
 
     return $self->_execute_command( $res, $params );
-}
+	} else {
 
+		return $self->_execute_command( $res );
+	} 
+
+}
 =method long_press_keycode ( keycode, [metastate])
 
 Android only: send a long press keycode to the device. Valid keycodes
