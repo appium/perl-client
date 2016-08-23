@@ -194,7 +194,7 @@ has 'touch_actions' => (
     is => 'ro',
     lazy => 1,
     init_arg => undef,
-    handles => [ qw/tap swipe wait moveTo release press longPress/ ],
+    handles => [ qw/tap swipe wait move_to release press long_press/ ],
     default => sub { Appium::TouchActions->new( driver => shift ); }
 );
 
