@@ -34,16 +34,12 @@ sub tap {
     my ($self, @coords) = @_;
 
 	my $coordinates = {
-
         x => $coords[0],
         y => $coords[1]
     };
 
-	my $params = { 'action' => 'tap' , 'options' => $coordinates };
-
+	my $params = { action => 'tap' , options => $coordinates };
 	push @{$self->{'perform_actions'}}, $params;
-
-
     return $self->driver;
 }
 
@@ -71,18 +67,14 @@ screen.
 sub press {
 	my ($self, @coords) = @_;
 
-
 	my $coordinates = {
-
         x => $coords[0],
         y => $coords[1]
     };
 
-	my $params = { 'action' => 'press' , 'options' => $coordinates };
-
+	my $params = { action => 'press' , options => $coordinates };
     push @{$self->{'perform_actions'}}, $params;
-
-    return $self->driver;	
+    return $self->driver;
 }
 
 =method wait ( $x, $y )
@@ -101,8 +93,7 @@ sub wait {
 		ms => $wait
 	};
 
-	my $params = { 'action' => 'wait' , 'options' => $options };
-
+	my $params = { action => 'wait' , options => $options };
     push @{$self->{'perform_actions'}}, $params;
 
     return $self->driver;
@@ -134,18 +125,13 @@ sub move_to {
 	my ($self, @coords) = @_;
 
     my $coordinates = {
-
         x => $coords[0],
         y => $coords[1]
     };
 
-
-	my $params = { 'action' => 'moveTo' , 'options' => $coordinates };
-
+	my $params = { action => 'moveTo' , options => $coordinates };
     push @{$self->{'perform_actions'}}, $params;
-
     return $self->driver;
-		
 }
 
 
@@ -161,12 +147,8 @@ Perform a release aciton, no argument specified
 sub release {
 	my ($self, @options) = @_;
 
-	my $options = {};
-
-	my $params = { 'action' => 'release' , 'options' => $options };	
-
+	my $params = { action => 'release' , options => {} };
 	push @{$self->{'perform_actions'}}, $params;
- 
     return $self->driver;
 }
 
@@ -197,18 +179,14 @@ Specify the duration in miliseconds
 sub long_press {
 	my ($self, @params) = @_;
 
-
     my $options = {
-
         x => $params[0],
         y => $params[1],
 		duration => $params[2]
     };
 
-    my $final_params = { 'action' => 'press' , 'options' => $options };
-
+    my $final_params = { action => 'press' , options => $options };
     push @{$self->{'perform_actions'}}, $final_params;
-
     return $self->driver;
 }
 
@@ -226,11 +204,12 @@ start_x, start_y, wait_time,end_x,end_y
 =cut
 
 sub swipe {
-
 	my ($self, @coords) = @_;
 
-	return $self->press($coords[0], $coords[1])->wait($coords[4])->move_to($coords[2], $coords[3])->release();
-
+	return $self->press($coords[0], $coords[1])
+	  ->wait($coords[4])
+	  ->move_to($coords[2], $coords[3])
+	  ->release;
 }
 
 1;
