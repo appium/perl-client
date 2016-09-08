@@ -198,7 +198,6 @@ has 'touch_actions' => (
     default => sub { Appium::TouchActions->new( driver => shift ); }
 );
 
-
 has 'webelement_class' => (
     is => 'rw',
     default => sub { 'Appium::Element' }
@@ -337,7 +336,7 @@ sub reset {
     return $self->_execute_command( $res );
 }
 
-=method press_keycode ( keycode, [metastate])
+=method press_keycode ( keycode, [metastate] )
 
 Android only: send a keycode to the device. Valid keycodes can be
 found in the L<Android
@@ -385,7 +384,7 @@ sub perform {
 	} 
 
 }
-=method long_press_keycode ( keycode, [metastate])
+=method long_press_keycode ( keycode, [metastate] )
 
 Android only: send a long press keycode to the device. Valid keycodes
 can be found in the L<Android
