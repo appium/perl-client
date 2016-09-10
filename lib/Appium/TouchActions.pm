@@ -75,11 +75,10 @@ sub tap {
     return $self;
 }
 
-    # press in the center of the screen
-    $appium->press( 0.5, 0.5 )->perform();
+=method press ( [$element, $x, $y] )
 
-    # press a pixel position
-    $appium->press( 300, 500 )->perform();
+Begin a TouchAction chain with a press down action at a particular
+element or point.
 
 =cut
 
@@ -101,7 +100,7 @@ sub press {
 Perform a wait action, specified duration in miliseconds
 
     #wait for action to complete
-    $appium->wait( 1000 )->perform();
+    $appium->wait( 1000 )->perform;
 
 =cut
 
@@ -133,10 +132,10 @@ the screen. Values greater than 1 will be interpreted as pixels. (10,
 screen.
 
     # move_to in the center of the screen
-    $appium->move_to( 0.5, 0.5 )->perform();
+    $appium->move_to( 0.5, 0.5 )->perform;
 
     # move_to a pixel position
-    $appium->move_to( 300, 500 )->perform();
+    $appium->move_to( 300, 500 )->perform;
 
 =cut
 
@@ -154,12 +153,12 @@ sub move_to {
 }
 
 
-=method release ( )
+=method release
 
-Perform a release aciton, no argument specified
+Release
 
     # release after any action
-    $appium->release()->perform();
+    $appium->release()->perform;
 
 =cut
 
@@ -171,12 +170,13 @@ sub release {
     return $self->driver;
 }
 
-=method long_press ( $x, $y )
+=method long_press ( $x, $y, $duration )
 
-Perform a precise tap at a certain location on the device, specified
+Perform a long press at a certain location on the device, specified
 either by pixels or percentages. All values are relative to the top
-left of the device - by percentages, (0,0) would be the top left, and
-(1, 1) would be the bottom right.
+left of the device - by percentages, (0,0) would be the top left, (1,
+0) would be the top right, (0, 1) would be the bottom left, and (1, 1)
+would be the bottom right.
 
 As per the Appium documentation, values between 0 and 1 will be
 interepreted as percentages. (0.5, 0.5) will click in the center of
@@ -184,13 +184,11 @@ the screen. Values greater than 1 will be interpreted as pixels. (10,
 10) will click at ten pixels away from the top and left edges of the
 screen.
 
-Specify the duration in miliseconds
-
     # long press in the center of the screen
-    $appium->long_press( 0.5, 0.5, 1000 )->perform();
+    $appium->long_press( 0.5, 0.5, 1000 )->perform;
 
     # long press a pixel position
-    $appium->long_press( 300, 500, 1000 )->perform();
+    $appium->long_press( 300, 500, 1000 )->perform;
 
 =cut
 
