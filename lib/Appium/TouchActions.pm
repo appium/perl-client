@@ -5,8 +5,8 @@ use Moo;
 
 has 'driver' => (
     is => 'ro',
-    required => 1,
-    handles => [ qw/prompt/ ]
+    required => 1
+    
 );
 
 =method tap ( $x, $y )
