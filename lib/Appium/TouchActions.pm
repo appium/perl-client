@@ -4,17 +4,6 @@ package Appium::TouchActions;
 use Moo;
 use Scalar::Util qw/blessed/;
 
-has 'driver' => (
-    is => 'ro',
-    required => 1
-);
-
-has 'actions' => (
-	is => 'lazy',
-	default => sub { [] },
-	clearer => 1
-);
-
 =head1 SYNOPSIS
 
     my $appium = Appium->new;
@@ -58,6 +47,24 @@ arguments, in this specific order: C<[element], [x_coord], [y_coord],
 * duration (optional) - some subroutines accept an millisecond amount
   of time to perform the action. For example, the different between
   L</press> and L</long_press> is the duration of time specified.
+
+=attr driver
+
+Required: pass in an instance of an L<Appium> driver, so that this
+class knows what mobile device to interact with.
+
+=cut
+
+has 'driver' => (
+    is => 'ro',
+    required => 1
+);
+
+has 'actions' => (
+	is => 'lazy',
+	default => sub { [] },
+	clearer => 1
+);
 
 =method tap ( [$element], [$x, $y] )
 
@@ -214,7 +221,7 @@ Perform a precise swipe at a certain location on the device, specified
 start_x, start_y, wait_time,end_x,end_y
 
 
-    # swipe right to left 
+    # swipe right to left
     $appium->swipe( 0.9, 0.5, 1000, 0.1, 0.5 )->perform();
 
 
