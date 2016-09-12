@@ -164,7 +164,7 @@ Reset the current application
 
     $appium->reset;
 
-## press\_keycode ( keycode, \[metastate\])
+## press\_keycode ( keycode, \[metastate\] )
 
 Android only: send a keycode to the device. Valid keycodes can be
 found in the [Android
@@ -175,7 +175,7 @@ Android KeyEvent documentation.
 
     $appium->press_keycode(176);
 
-## long\_press\_keycode ( keycode, \[metastate\])
+## long\_press\_keycode ( keycode, \[metastate\] )
 
 Android only: send a long press keycode to the device. Valid keycodes
 can be found in the [Android
@@ -350,7 +350,7 @@ feature.
 
 Daniel Gempesaw <gempesaw@gmail.com>
 
-# CONTRIBUTOR
+# CONTRIBUTORS
 
 Freddy Vega <freddy@vgp-miami.com>
 
