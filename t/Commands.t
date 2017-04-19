@@ -39,6 +39,7 @@ my @implemented = qw/
                         is_locked
                         network_connection
                         open_notifications
+					    perform
                         press_keycode
                         pull_file
                         pull_folder

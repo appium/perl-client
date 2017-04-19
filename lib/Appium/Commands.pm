@@ -34,11 +34,11 @@ has 'get_cmds' => (
                 url => 'session/:sessionId/context',
                 no_content_success => 1
             },
-            # touch_action => {
-            #         method => 'POST',
-            #         url => 'session/:sessionId/touch/perform',
-            #         no_content_success => 1
-            #     },
+            touch_action => {
+                method => 'POST',
+                url => 'session/:sessionId/touch/perform',
+                no_content_success => 1
+            },
             #     multi_action => {
             #         method => 'POST',
             #         url => 'session/:sessionId/touch/multi/perform',

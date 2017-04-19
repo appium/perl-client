@@ -194,7 +194,7 @@ has 'touch_actions' => (
     is => 'ro',
     lazy => 1,
     init_arg => undef,
-    handles => [ qw/tap/ ],
+    handles => [ qw/tap swipe wait move_to release press long_press/ ],
     default => sub { Appium::TouchActions->new( driver => shift ); }
 );
 
@@ -363,6 +363,28 @@ sub press_keycode {
     return $self->_execute_command( $res, $params );
 }
 
+sub perform {
+    
+
+    my $self = shift;
+    
+    my $res     = { command => 'touch_action' };
+
+	if (exists $self->{'touch_actions'}->{'perform_actions'}) {
+
+		my @actions = @{$self->{'touch_actions'}->{'perform_actions'}}; 
+
+	my $params  = {'actions' => \@actions}; 
+
+	undef @{$self->{'touch_actions'}->{'perform_actions'}};
+
+    return $self->_execute_command( $res, $params );
+	} else {
+
+		return $self->_execute_command( $res );
+	} 
+
+}
 =method long_press_keycode ( keycode, [metastate])
 
 Android only: send a long press keycode to the device. Valid keycodes
