@@ -6,7 +6,6 @@ use Appium;
 use Cwd qw/abs_path/;
 use Capture::Tiny qw/capture_stdout/;
 use File::Basename qw/dirname/;
-use FileHandle;
 use IO::Socket::INET;
 use IPC::Cmd qw/can_run/;
 use Test::More;
