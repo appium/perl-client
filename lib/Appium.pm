@@ -12,7 +12,7 @@ use Appium::ErrorHandler;
 use Appium::SwitchTo;
 use Appium::TouchActions;
 
-use Selenium::Remote::Driver 0.2202;
+use Selenium::Remote::Driver;
 use Selenium::Remote::RemoteConnection;
 extends 'Selenium::Remote::Driver';
 
