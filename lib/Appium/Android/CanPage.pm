@@ -86,6 +86,9 @@ sub _inspect_nodes {
         #
         # We'll keep the lines in an array that we push on to whenever
         # we find interesting things about the node
+
+        next if ref($node) eq 'XML::LibXML::Text';
+
         my @inspect_output = ( $node->getAttribute('class') );
 
         my $is_node_interesting = 0;

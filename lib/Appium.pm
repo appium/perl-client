@@ -45,10 +45,22 @@ instantiate L<Appium::Element> on your own; this module will create
 them when necessary so that all you need to know is what methods are
 appropriate on an element vs the driver.
 
-    my $appium = Appium->new( caps => { app => '/path/to/app.zip' } );
+Here is an extended example that connects to a remote Appium server and
+search an element by id.
+
+    my $appium = Appium->new(
+      remote_server_addr  => 'our-appium-server',
+      port                => '4723',
+      caps                => {
+        platformName  => "Android",
+        deviceName    => 'emulator-5554',
+        app           => '/path/to/my/app-release.apk',
+        orientation   => 'PORTRAIT', # or LANDSCAPE
+      }
+    );
 
     # automatically instantiates Appium::Element for you
-    my $elem = $appium->find_element('test', 'id');
+    my $text =  $appium->find_element( "com.example.myfirstapp:id/textView", 'id');
     $elem->click;
 
 =cut
@@ -207,6 +219,9 @@ has 'webelement_class' => (
 sub BUILD {
     my ($self) = @_;
 
+    # This subclass specifies that it's not WD3
+    $self->{is_wd3} = 0;
+
     $self->_type($self->desired_capabilities->{platformName});
 
     Moo::Role->apply_roles_to_object( $self, 'Appium::Ios::CanPage' )
@@ -214,7 +229,9 @@ sub BUILD {
 
     Moo::Role->apply_roles_to_object( $self, 'Appium::Android::CanPage' )
         if $self->is_android;
+
 }
+
 
 =method contexts ()
 
@@ -424,6 +441,21 @@ sub pull_file {
     return $self->_execute_command( $res, $params );
 }
 
+=method screenshot ( )
+
+Takes a screenshot on the device, returning it Base64 encoded.
+
+    $appium->screenshot();
+
+=cut
+
+sub screenshot {
+    my ($self) = @_;
+
+    my $res = { command => 'screenshot' };
+
+    return $self->_execute_command( $res );
+}
 =method pull_folder ( $path )
 
 Retrieve a folder at path, returning the folder's contents in a zip
