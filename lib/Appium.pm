@@ -207,6 +207,9 @@ has 'webelement_class' => (
 sub BUILD {
     my ($self) = @_;
 
+    # This subclass specifies that it's not WD3
+    $self->{is_wd3} = 0;
+
     $self->_type($self->desired_capabilities->{platformName});
 
     Moo::Role->apply_roles_to_object( $self, 'Appium::Ios::CanPage' )
@@ -214,7 +217,9 @@ sub BUILD {
 
     Moo::Role->apply_roles_to_object( $self, 'Appium::Android::CanPage' )
         if $self->is_android;
+
 }
+
 
 =method contexts ()
 
