@@ -45,10 +45,22 @@ instantiate L<Appium::Element> on your own; this module will create
 them when necessary so that all you need to know is what methods are
 appropriate on an element vs the driver.
 
-    my $appium = Appium->new( caps => { app => '/path/to/app.zip' } );
+Here is an extended example that connects to a remote Appium server and
+search an element by id.
+
+    my $appium = Appium->new(
+      remote_server_addr  => 'our-appium-server',
+      port                => '4723',
+      caps                => {
+        platformName  => "Android",
+        deviceName    => 'emulator-5554',
+        app           => '/path/to/my/app-release.apk',
+        orientation   => 'PORTRAIT', # or LANDSCAPE
+      }
+    );
 
     # automatically instantiates Appium::Element for you
-    my $elem = $appium->find_element('test', 'id');
+    my $text =  $appium->find_element( "com.example.myfirstapp:id/textView", 'id');
     $elem->click;
 
 =cut
